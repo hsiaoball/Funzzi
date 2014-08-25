@@ -1,0 +1,148 @@
+.main_header{
+    background: #f58a6f;
+    width: 102%;
+    height: 28px;
+    box-shadow: 0px 5px 5px rgba(113, 113, 113, 0.52);
+    position: fixed;
+    z-index: 99;
+}
+
+
+
+.logo{
+z-index: +3;
+position: absolute;
+left: 46%;
+}
+#main_top_pic{
+    -webkit-filter: blur(2px); -moz-filter: blur(2px); -o-filter: blur(2px); -ms-filter: blur(2px); filter: blur(2px); 
+    width: 100%;
+}
+
+
+.top_image{
+    
+    width: 100%;
+    
+    position: fixed;
+    z-index: -3;
+}
+
+.slogan_text{
+    position: center;
+    position: absolute;
+    top: 190px;
+    left: 40%;
+    font-size: xx-large;
+    font-family: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif;
+}
+
+.header_text{
+   text-align: end;
+    color:#3d3d3d;
+}
+
+.header_text.a:link {
+    color: white;
+}
+.search_block{
+    background-color: rgba(245, 138, 111, 0.44);
+
+    width: 100%;
+    text-align: center;
+    height: 79px;
+}
+
+.search_block_content{
+    position: relative;
+    top: 27px;
+}
+
+.main_content{
+    background-image: url('/img/main_background.jpg');
+
+    height:1300px;
+}
+.main_bottom{
+    background-color: #f58a6f;
+    width: 100%;
+    height: 250px;
+}
+.main_group_after_pic{
+    position: absolute;
+        top: 323px;
+    width: 100%;
+}
+.blocks{
+
+    height: 250px;
+    width: 250px;
+    float: left;
+    margin: 23px;
+    border-radius: 8px;
+    text-align: -webkit-center;
+    color: white;
+
+
+}
+.blocks:hover{
+    -webkit-filter: brightness(25%);
+
+}
+
+.feature_img{
+
+}
+
+.feature_group{
+    position: relative;
+    float: left;
+}
+.feature_div{
+    position: relative;
+    background-position: center;
+background-size: cover;
+        height: 250px;
+    width: 250px;
+    float: left;
+    margin: 23px;
+    border-radius: 8px;
+    text-align: -webkit-center;
+    color: white;
+
+}
+.feature_div_hover{
+    -webkit-filter: brightness(25%);
+
+}
+.feature_text{
+z-index: +3;
+position: absolute;
+font-size: x-large;
+    color:white;
+left: 75px;
+top: 75px;
+    line-height: 109%;
+
+}
+
+
+
+.block_orange{
+    background-color: #f58a6f;
+}
+.block_yellow{
+    background-color: #e6db5e;
+}
+.block_grey{
+    background-color: #3d3d3d;
+}
+.block_row{
+clear: left;
+}
+.blcck_container{
+width: 889px;
+
+margin-left: auto;
+margin-right: auto; 
+}

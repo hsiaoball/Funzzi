@@ -1,0 +1,46 @@
+
+        <form action="/facebook/connect/?facebook_login=1" method="post" id="pic_upload_form">
+            <input type="hidden" value="" name="next">
+            <input type="hidden" value="" name="register_next">
+            <input type="hidden" value="" name="error_next">
+            <input onclick="F.connect(this.parentNode); return false;" type="image" src="django_facebook/images/facebook_login.png">
+            <font size=3>or</font>
+
+        </form>
+
+        <div data-bind="with:user">
+            <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>   
+            <div class="btn btn_black" data-bind="click:go2Create">
+                or Sign up
+            </div>                     
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+            </ul>
+            <div class="forget">
+                Forget Password
+            </div>
+         
+            <div class="btn btn_black" data-bind="click:doLogin">
+                Log In
+            </div>
+            
+      
+        </div>
+
+
+
+    <script src="django_facebook/js/facebook.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>

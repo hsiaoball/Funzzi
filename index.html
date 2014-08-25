@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="js/less-1.4.1.min.js"></script>
+    <title>SSNB</title>
+</head>
+<style>
+h1
+{background-color:#6495ed;}
+p
+{background-color:#e0ffff;}
+div
+{background-color:#ffffff;}
+.flag
+    {background-color:#a0c4de;}
+.comment_item    
+    {background-color:#f55d5d;}
+</style>
+<body>
+    <!-- AppView -->
+    <section id="app" data-bind="with: VM">
+        <div class="view" data-bind="css: name">
+            <div class="headlinks" data-bind="with:$parent.user">
+                <section data-bind="visible:!user_id()">
+                    <a class="share"></a>
+                    <a class="user" data-bind="click:go2login"></a>
+                </section>
+                <section data-bind="visible:!!user_id()">
+                    <a class="notify"></a>
+                    <a class="share"></a>
+                    <a class="user" data-bind="click:doLogout"></a>
+                </section>
+            </div>
+            <div class="body" data-bind="template: { name: body, afterRender: init }"></div>
+        </div>
+    </section>
+    <!-- views -->
+    <template id="view_login">
+        <h2 class="siteTitle">
+            Login:
+        </h2>
+        <div data-bind="with:user">
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+            </ul>
+            <div class="forget">
+                Forget Password
+            </div>
+            <div class="btn btn_black" data-bind="click:go2Create">
+                Sign up
+            </div>            
+            <div class="btn btn_black" data-bind="click:doLogin">
+                Log In
+            </div>
+        </div>
+    </template>
+    <template id="view_create_account">
+        <h2 class="siteTitle">
+            Rental Listing
+        </h2>
+        <div data-bind="with:user">
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password2" placeholder="Plz repeat Password..." />
+                </li>
+            
+            </ul>
+            <strong data-bind="text: error_msg"></strong>
+            <div class="btn btn_black" data-bind="click:doCreate">
+                Submit
+            </div>
+        </div>
+    </template>    
+    <template id="view_search">
+        <div class="title_graph">
+            <h2 class="siteTitle">
+                Rent Listing:           <a href="#" data-bind="click:$parent.login">LOGIN</a>
+            </h2>
+        </div>
+        <div class="filter"></div>
+        <div class="events">
+            <ul class="event_list" data-bind="template:{name:'tmpl_event',foreach:polls}"></ul>
+            <div data-bind="visible:loading">Loading...</div>
+        </div>
+         <a href="#" data-bind="click:$parent.post_event">POST</a>
+    </template>
+    <template id="view_event">
+        <div class="title_graph">
+            <a href="#" data-bind="click:back">BACK</a>
+            <div data-bind="with:poll">
+                
+            </div>
+        </div>
+
+        <div class="tabs">
+            <section class="info" data-bind="with:poll">
+                <div class="meet">
+                    <div class="map"></div>
+
+                </div>
+                <ul class="infolist">
+                    <li>
+                        <label>Start Date</label>
+                        <div class="field">
+                            <span data-bind="text:$.format.date(start_date,'MMM. d')"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <label>End Date</label>
+                        <div class="field">
+                            <span data-bind="text:$.format.date(end_date,'MMM. d')"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <label>Address</label>
+                        <div class="field">
+                            <span data-bind="text:state"></span>    <span data-bind="text:zip"></span>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="desc">
+                    <h3>Description</h3>
+                    <div class="content" data-bind="text:content"></div>
+                </div>
+            </section>
+            <section class="comment"></section>
+        </div>
+        <br />Who is interested:
+
+        <br />COMMENTS:
+        <div data-bind="foreach:comments">
+            <div class="comment">
+                <span class="comment_item" data-bind="text:commenter"></span><span class="comment_item">:
+                </span><span class="comment_item" data-bind="text:comment_text">   </span>
+            </div>
+        </div>
+        <div data-bind="if:showComment()">
+            <ul class="form">
+                <li>
+                    <label>Comment:</label>
+                    <textarea data-bind="value:textarea_comment"></textarea>
+                </li>
+            </ul>
+            <a href="#" data-bind="click:leaveComment">COMMENT</a>
+        </div>
+        <br />
+        <div data-bind="if:showJoin()">
+            JOIN EVENT
+            <ul class="form">
+                <li>
+                    <label>GUESTS:</label>
+                    <input type="number" data-bind="value:guest_num" />
+                </li>
+                <li>
+                    <label>SKI NUM:</label>
+                    <input type="number" data-bind="value:ski_num" />
+                </li>
+                <li>
+                    <label>SB NUM:</label>
+                    <input type="number" data-bind="value:sb_num" />
+                </li>
+            </ul>
+            <a href="#" data-bind="click:join">JOIN</a>
+        </div>
+        <div data-bind="if:showEdit()">
+            <a href="#">EDIT</a>
+            <a href="#" data-bind="click:remove">REMOVE</a>
+        </div>
+    </template>
+    <template id="view_post">
+        POST EVENT
+        <ul class="form">
+            <li>
+                <label>Start Time</label>
+                <input class="date departure" type="text" data-bind="value:departure_time" />
+            </li>
+            <li>
+                <label>End Time</label>
+                <input class="date return" type="text" data-bind="value:return_time" />
+            </li>
+            <li>
+                <label>Address</label>
+                <input type="text" data-bind="value:address" />
+            </li>
+            <li>
+                <label>State</label>
+                <input type="text" data-bind="value:state" />
+            </li>            
+            <li>
+                <label>Zip</label>
+                <input type="number" data-bind="value:zip" />
+            </li>
+            <li>
+                <label>Rent</label>
+                <input type="number" data-bind="value:rent" />
+            </li>
+            <li>
+                <label>Content</label>
+                <textarea data-bind="value:content"></textarea>
+            </li>
+        </ul>
+        <a data-bind="click:post" href="#">POST</a>
+        <a href="#" data-bind="click:back">BACK</a>
+    </template>
+    <!-- comp -->
+    <template id="tmpl_event">
+        <li class="event" data-bind="click:$parent.click">
+            <div class="flag"> start at:
+                <span class="month" data-bind="text:$.format.date(start_date,'MMM')"></span>
+                <span class="date" data-bind="text:$.format.date(start_date,'d')"></span>
+                <span class="time" data-bind="text:$.format.date(start_date,'HH:mm')"></span>
+            </div>
+
+            <div class="line">
+                <div class="wrapper">
+                    <div class="adress">
+                        <span data-bind="text:state"></span>:
+                        <span data-bind="text:zip"></span>
+                    </div>
+
+                </div>
+
+            </div>
+        </li>
+    </template>
+
+    <!-- script -->
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

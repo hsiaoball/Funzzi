@@ -1,0 +1,102 @@
+    <script type="text/html" id="view_post">
+        <h2 class="siteTitle">
+        POST Rental:
+            </h2>
+        <ul class="form">
+        
+            <div class="input-prepend">
+                <span class="add-on">Start Time</span>
+                <input class="date departure" type="text" data-bind="value:departure_time" /> 
+            </div><span class="post_error_msg" data-bind="text: departure_time_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">End Time</span>
+                <input class="date return" type="text" data-bind="value:return_time" />
+            </div><span class="post_error_msg" data-bind="text: return_time_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on"># of Bed</span>
+                <input type="text" data-bind="value:num_bed" />
+            </div><span class="post_error_msg" data-bind="text: num_bed_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on"># of bath</span>
+                <input type="text" data-bind="value:num_bath" />
+            </div><span class="post_error_msg" data-bind="text: num_bath_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">Address</span>
+                <input type="text" data-bind="value:address" />
+            </div><span class="post_error_msg" data-bind="text: address_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">City</span>
+                <input type="text" data-bind="value:city" />
+            </div><span class="post_error_msg" data-bind="text: city_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">State</span>
+                <input type="text" data-bind="value:state" />
+            </div><span class="post_error_msg" data-bind="text: state_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">Zip</span>
+                <input type="number" data-bind="value:zip" />
+            </div><span class="post_error_msg" data-bind="text: zip_check"></span>
+            <br><div class="input-prepend input-append">
+                <span class="add-on">Rent </span>
+                <input class="span2"  data-bind="value:rent" type="number">
+                <span class="add-on">.00</span>
+            </div><span class="post_error_msg" data-bind="text: rent_check"></span>
+            <br><div class="input-prepend">
+                <label>Content</label>
+                <textarea data-bind="value:content" rows="3"></textarea>
+                </div><br><span class="post_error_msg" data-bind="text: content_check"></span>
+            </li>
+            
+        -----optional------
+        <div class="row-fluid">
+            <div class="span4">
+                <span class="detail_header">Property</span>
+                <table>
+    <tr> <td>size                  </td><td colspan=2><input type="number" name="size" data-bind="value:size"></td></tr> 
+    <tr> <td>property_type         </td><td colspan=2><select data-bind="options: property_type"></select></td></tr> 
+    <tr> <td>floor_level           </td><td colspan=2><input type="number" name="floor_level" data-bind="value:floor_level"></td></tr> 
+    <tr> <td>parking               </td><td colspan=2><select data-bind="options: parking"></select></td></tr> 
+    <tr> <td>pet                   </td><td colspan=2><select data-bind="options: pet"></select></td></tr>
+    <tr> <td>smoking                 </td><td>Yes <input type="radio" name="smoking           " value="1" data-bind="checked:smoking           "></td><td> No <input type="radio" name="smoking           " value="0" data-bind="checked:smoking           "></td></tr>
+    <tr> <td>private_bath          </td><td>Yes <input type="radio" name="private_bath    " value="1" data-bind="checked:private_bath    "></td><td> No <input type="radio" name="private_bath    " value="0" data-bind="checked:private_bath    "></td></tr>
+    <tr> <td>washer_dryer          </td><td colspan=2><select data-bind="options: washer_dryer"></select></td></tr>
+    <tr> <td>kitchen_access        </td><td>Yes <input type="radio" name="kitchen_access  " value="1" data-bind="checked:kitchen_access  "></td><td> No <input type="radio" name="kitchen_access  " value="0" data-bind="checked:kitchen_access  "></td></tr>
+    <tr> <td>internet              </td><td>Yes <input type="radio" name="internet        " value="1" data-bind="checked:internet        "></td><td> No <input type="radio" name="internet        " value="0" data-bind="checked:internet        "></td></tr>
+    <tr> <td>cable_tv              </td><td>Yes <input type="radio" name="cable_tv        " value="1" data-bind="checked:cable_tv        "></td><td> No <input type="radio" name="cable_tv        " value="0" data-bind="checked:cable_tv        "></td></tr>
+</table>
+    
+            </div>
+            <div class="span4">
+                <span class="detail_header">Community Features</span>
+                <table>
+    <tr> <td>park                  </td><td>Yes <input type="radio" name="park            " value="1" data-bind="checked:park            "></td><td> No <input type="radio" name="park            " value="0" data-bind="checked:park            "></td></tr>
+    <tr> <td>play_ground           </td><td>Yes <input type="radio" name="play_ground     " value="1" data-bind="checked:play_ground     "></td><td> No <input type="radio" name="play_ground     " value="0" data-bind="checked:play_ground     "></td></tr>
+    <tr> <td>tennis                </td><td>Yes <input type="radio" name="tennis          " value="1" data-bind="checked:tennis          "></td><td> No <input type="radio" name="tennis          " value="0" data-bind="checked:tennis          "></td></tr>
+    <tr> <td>basketball            </td><td>Yes <input type="radio" name="basketball      " value="1" data-bind="checked:basketball      "></td><td> No <input type="radio" name="basketball      " value="0" data-bind="checked:basketball      "></td></tr>
+    <tr> <td>swim_pool             </td><td>Yes <input type="radio" name="swim_pool       " value="1" data-bind="checked:swim_pool       "></td><td> No <input type="radio" name="swim_pool       " value="0" data-bind="checked:swim_pool       "></td></tr>
+    <tr> <td>jacuzzi               </td><td>Yes <input type="radio" name="jacuzzi         " value="1" data-bind="checked:jacuzzi         "></td><td> No <input type="radio" name="jacuzzi         " value="0" data-bind="checked:jacuzzi         "></td></tr>
+    <tr> <td>gym                   </td><td>Yes <input type="radio" name="gym             " value="1" data-bind="checked:gym             "></td><td> No <input type="radio" name="gym             " value="0" data-bind="checked:gym             "></td></tr>
+    <tr> <td>bbq_area              </td><td>Yes <input type="radio" name="bbq_area        " value="1" data-bind="checked:bbq_area        "></td><td> No <input type="radio" name="bbq_area        " value="0" data-bind="checked:bbq_area        "></td></tr>
+                    
+</table>
+    
+            </div>
+            <div class="span4">
+                <span class="detail_header">Rent-included item</span>
+                <table>
+    <tr> <td>rent_internet         </td><td>Yes <input type="radio" name="rent_internet   " value="1" data-bind="checked:rent_internet   "></td><td> No <input type="radio" name="rent_internet   " value="0" data-bind="checked:rent_internet   "></td></tr>
+    <tr> <td>rent_cable_tv         </td><td>Yes <input type="radio" name="rent_cable_tv   " value="1" data-bind="checked:rent_cable_tv   "></td><td> No <input type="radio" name="rent_cable_tv   " value="0" data-bind="checked:rent_cable_tv   "></td></tr>
+    <tr> <td>rent_water            </td><td>Yes <input type="radio" name="rent_water      " value="1" data-bind="checked:rent_water      "></td><td> No <input type="radio" name="rent_water      " value="0" data-bind="checked:rent_water      "></td></tr>
+    <tr> <td>rent_gas              </td><td>Yes <input type="radio" name="rent_gas        " value="1" data-bind="checked:rent_gas        "></td><td> No <input type="radio" name="rent_gas        " value="0" data-bind="checked:rent_gas        "></td></tr>
+    <tr> <td>rent_electricity      </td><td>Yes <input type="radio" name="rent_electricity" value="1" data-bind="checked:rent_electricity"></td><td> No <input type="radio" name="rent_electricity" value="0" data-bind="checked:rent_electricity"></td></tr>
+    <tr> <td>rent_garbage          </td><td>Yes <input type="radio" name="rent_garbage    " value="1" data-bind="checked:rent_garbage    "></td><td> No <input type="radio" name="rent_garbage    " value="0" data-bind="checked:rent_garbage    "></td></tr>
+    <tr> <td>rent_parking          </td><td>Yes <input type="radio" name="rent_parking    " value="1" data-bind="checked:rent_parking    "></td><td> No <input type="radio" name="rent_parking    " value="0" data-bind="checked:rent_parking    "></td></tr>
+                    
+</table>
+    
+            </div>     
+        </div>
+        </ul>
+        <a data-bind="click:post" class="btn btn-primary" href="#">POST</a>
+        <a href="#" data-bind="click:back" class="btn">BACK</a>
+    </script>

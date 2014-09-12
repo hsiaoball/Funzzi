@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 import json
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse,HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.core.urlresolvers import reverse
@@ -25,13 +25,13 @@ def index(request):
         if function_name=='profile':		
             return profile_view(request,request.POST['user_name']);	
     if 'username' not in request.POST:
-        return render(request, 'login/index.html')
+        return HttpResponse("\"no username\"", content_type="application/json")
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:
-            login(user)
+            login(request,user)
             if request.is_ajax():
                 return HttpResponse(user.id, content_type="application/json")		
             return redirect('/polls/')
@@ -39,10 +39,9 @@ def index(request):
         else:
             return HttpResponse("\"Disable account\"", content_type="application/json")		
     else:
-        return HttpResponse("\"invalid login\"", content_type="application/json")		
+        return HttpResponseBadRequest("\"invalid login\"", content_type="application/json")		
 
-def login(request):  
-        return HttpResponseRedirect('../../login.html')          
+      
         
 @csrf_exempt
 def create(request):
@@ -61,7 +60,7 @@ def create(request):
             user.save()                                      
             form = ImageUploadForm(request.POST, request.FILES)
             user = authenticate(username=username, password=password)
-            login(user)
+            login(request,user)
             if request.is_ajax():		
                 return HttpResponse(request.user.id, content_type="application/json")			
             else:				  
@@ -86,6 +85,7 @@ def check_login(request):
         groups_and_items = {}
         groups_and_items['id']=request.user.id
         groups_and_items['username']=request.user.username
+        groups_and_items['profile_pic']=get_fb_pic(request.user.id)
       
         user= User.objects.get(pk=request.user.id)	
         notice_group=[]
@@ -102,7 +102,8 @@ def check_login(request):
         serialized_obj = json.dumps(groups_and_items)
         return HttpResponse(serialized_obj, content_type="application/json")
     else:
-        return HttpResponse([], content_type="application/json")	
+        return HttpResponse(0, content_type="application/json")	
+
 
 def set_read_notice(request):      
     if request.user.is_authenticated():

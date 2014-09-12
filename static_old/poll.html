@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" /> 
+    <script type="text/javascript" src="js/less-1.4.1.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/facebook.css" type="text/css" rel="stylesheet" media="all" />
+
+
+    <title>Renmo</title>
+</head>
+<style>
+/* Large desktop */
+@media (min-width: 980px) { 
+    .small_card_img {
+      width:  inherit;
+      height: 280px;
+    }         
+    #index_search   {
+       width: 400px;
+        top:360px;
+    } 
+    .event_card{
+/*        width:500px;*/
+    }
+    .flag{width: 40%;}
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    #index_search   {
+       width: 400px;
+        top:360px;
+    } 
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { ... }
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) { ... }    
+body{background-color:#fff;}
+img { 
+  max-width: 100%;
+}    
+#app > div{
+    float: none;
+    margin: 0 auto;}    
+h1
+{background-color:#6495ed;}
+p
+{background-color:#e0ffff;}
+
+.flag{
+   color: white; 
+
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}
+.big_card{
+    position: relative;
+}
+.big_card_info{
+    font-size: large;
+   color: white;
+    position: absolute;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 15px; 
+    top: 83px;
+    left: -1%;
+}
+.big_card_poster{
+    font-size: large;
+   color: white;
+    position: absolute;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 15px; 
+    top: 479px;
+    right: -1%;
+}
+        
+
+.event_card
+    {border:1px solid gray;
+        position: relative;
+        margin-bottom: 20px;
+        height: 55px;
+    }
+#view_search{
+background-image:url('/background.jpg');
+}
+
+.image {
+/*    position:relative;*/
+    float:left; /* optional */
+    z-index:-1;
+}
+#event_sidebar{
+   top:20px
+}
+.image .text {
+    position:absolute;
+    top:100px; /* in conjunction with left property, decides the text position */
+    right:10px;
+/*    margin-right: auto;*/
+    color: white;
+    background-color: none;
+}
+#color_block {
+    width:100%;
+    height:10px;    
+    position:absolute;
+    top:50px; /* in conjunction with left property, decides the text position */
+    background:rgb(255, 175, 23);
+    z-index:-2;
+}    
+#index_search{
+    position:absolute;  
+    
+/*    right:50%;    */
+/*    width:500px;*/
+    height:150px;
+    background-color: rgba(255, 255, 255, 0);
+}
+    
+#index_search .tab-content  
+{
+        position:absolute;  
+        top: 24%;
+        left: 0%;
+        width:100%;
+        height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    border:1px solid #ff0606;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+    
+#index_search .tab-content >div 
+{
+        height: 100%;
+    z-index: -1
+
+}    
+
+#index_search li  
+{
+background-color: rgba(255, 255, 255, 0);
+    
+}    
+.nav-tabs > li > a:hover {
+    background-color: : #de2929;
+    color: #de2929;
+}
+
+.nav-tabs > li > a {
+  background-color: rgba(255, 245, 0, 0.88);
+}        
+    
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  border-color: #00ff31 #e60505 #dddddd;
+}    
+    
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+  color: #555555;
+  cursor: default;
+  background-color: #ffffff;
+  border: 1px solid #ff0606;
+  border-bottom-color: transparent;
+  z-index: 2;
+}    
+#find_room > div{
+/*    position:absolute;  */
+    left: 5%;
+    top: 2%;    
+}
+#find_room > div > form {
+
+    
+}    
+body > div.navi_menu{
+    float: right;
+}
+.post_error_msg{
+    color: red;
+}    
+    
+.poster-info{
+   float: right;
+    
+}
+.slide_ind{
+    width: 50px;
+    -webkit-filter: grayscale(1);
+    border:5px solid gray;
+}
+#myCarousel > ol > img.slide_ind.active{
+    -webkit-filter: grayscale(0);
+    border:5px solid red;
+}    
+  #container_card {
+    display: table;
+      
+    }
+
+  #row  {
+position: absolute;
+ bottom: 0px; 
+height: 80px;
+width: inherit;
+    }
+
+#card_poster{
+    background: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    width: initial;
+}
+#card_info{}
+    
+   #right, #middle {
+
+    }    
+.fb-img {
+  width:  auto;
+  height: 40px;
+}    
+  
+
+#myCarousel{
+    width: 100%;
+} 
+    
+.detail_header{
+    color:grey;
+    margin: auto;
+    font-weight:bold;
+}
+.Yes{
+    color:green;
+}
+.No{
+    color:red;
+}
+.high_light_detail{
+    color:#ac0000;
+    font-weight:bold;
+    font-size:140%
+}
+</style>
+
+<body  data-spy="scroll" data-target=".navbar">
+ 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=490262681101649&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    
+<div class="row navi_menu">
+  <div class="offset9">
+                <div class="headlinks" data-bind="with:$root.user">
+                    <section data-bind="visible:!user_id()">                        
+                        <form action="/facebook/connect/?facebook_login=1" method="post">
+                            <input type="hidden" value="" name="next">
+                            <input type="hidden" value="" name="register_next">
+                            <input type="hidden" value="" name="error_next">
+                            <input onclick="F.connect(this.parentNode); return false;" type="image" src="django_facebook/images/facebook_login.png">
+                            <font size=3>or</font>
+                            <div class="btn btn_black" data-bind="click:$root.login">Login</div>
+                        </form>
+                    </section>
+                    <section data-bind="visible:!!user_id()">
+                       Hi <span data-bind="text:username"></span> <a href="#" data-bind="click:$root.post_event">POST</a> <a href="#" data-bind="click:$root.user.doLogout">LOGOUT</a>
+                    </section>                    
+                </div>      
+
+  </div>
+</div>    
+<div id="color_block"></div>
+    <!-- AppView -->
+    <section id="app" data-bind="with: VM">
+        <div class="view container" data-bind="css: name">
+            <div class="headlinks" data-bind="with:$parent.user">
+                <section data-bind="visible:!user_id()">
+                    <a class="share"></a>
+                    <a class="user" data-bind="click:go2login"></a>
+                </section>
+                <section data-bind="visible:!!user_id()">
+                    <a class="notify"></a>
+                    <a class="share"></a>
+                    <a class="user" data-bind="click:doLogout"></a>
+                </section>
+            </div>
+            <div class="body" data-bind="template: { name: body, afterRender: init }"></div>
+        </div>
+    </section>
+    <br>
+<!--    
+<div class="fb-like" data-href="http://rentlisting-snowleo.rhcloud.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>    -->
+    <!-- views -->
+
+    
+
+<div class="container-fluid "  >     
+    <div class="row-fluid">
+        <div class="span2 bs-docs-sidebar" id="event_sidebar">
+ <ul class="nav nav-list bs-docs-sidenav affix navbar ">
+  <li class="nav-header">List Detail</li>
+  <li class="active"><a data-bind="#big_pic">Overview</a></li>
+  <li><a href="#event_detail">Detail</a></li>   
+<!--  <li><a href="#map">Location MAP</a></li>-->
+  <li><a href="#comment">Comments</a></li>
+
+</ul>
+</div>
+        <div class="offset2">
+        <div class="tabs">
+                
+            <section class="big_pic" data-bind="with:poll" id="big_pic">
+                <div data-bind="visible:$parent.loading">Loading...</div>
+            <div class="big_card">
+           <div id="myCarousel" class="carousel slide span8"  >
+          <ol class="carousel-indicators" data-bind="foreach:imgs">
+            <img data-target="#myCarousel" data-bind="attr:{
+                                                      'data-slide-to':$index, 
+                                                      src: 'media/'+img, 
+                                                      class: $index() === 0 ?'slide_ind active' : 'slide_ind'}"></li>
+        
+          </ol>
+          <!-- Carousel items -->
+          <div class="carousel-inner" data-bind="foreach:imgs">
+              <div class="item" data-bind="attr:{class:act} "><img data-bind="attr: { src: 'media/'+img } " ></div>
+        
+          </div>
+          <div class="carousel-inner" data-bind="if:imgs.length==0" >  
+              <div class="item active "><img src="/img/big_card_pic.jpg" ></div>
+          </div>
+          <!-- Carousel nav -->
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev"  data-bind="visible:imgs.length>1">&lsaquo;</a>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next"  data-bind="visible:imgs.length>1">&rsaquo;</a>
+        </div>
+            <div class="big_card_info">
+                <span class="bed" data-bind="text:num_bed"></span> B
+                <span class="bath" data-bind="text:num_bath"></span> b
+                $<span class="bath" data-bind="text:rent"></span>/m
+               <br>
+                Avail: <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span>
+<!--                - <span data-bind="text:$.format.date(end_date,'MMM. d, yyyy')"></span>-->
+                <br><span data-bind="text:city"></span>
+                <span data-bind="text:state"></span>
+                <span data-bind="text:zip"></span>
+                
+            </div>    
+            <div class="big_card_poster">
+                Post by:<span class="bed" data-bind="text:user_field"></span>
+            </div>                    
+                </div>
+<div class="fb-like" data-bind="attr: { data-href:'http://rentlisting-snowleo.rhcloud.com/index.html#event/'+event_id()" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>            
+            </section>
+            <section id="event_detail" data-bind="with:poll">
+             <div class="row-fluid high_light_detail">
+                 <div class="span3" data-bind="if:pet!='None'">
+                     >Allow Pet:<span data-bind="text:pet"></span>
+                 </div>
+                 <div class="span3" data-bind="if:smoke!='None'">
+                     >Allow smoke:<span data-bind="text:smoke"></span>
+                 </div>
+                 <div class="span3" data-bind="if:washer_dryer!='None'">
+                     >Washer dryer:<span data-bind="text:washer_dryer"></span>
+                 </div>
+                 <div class="span3" data-bind="if:parking!='None'">
+                     >Parking:<span data-bind="text:parking"></span>
+                 </div>                 
+             </div>
+        <div class="row-fluid">
+            <div class="span4">
+                <span class="detail_header">Property</span>
+                <table>
+    <tr data-bind="if:size          !='None'"> <td>Total Size            </td><td data-bind="attr:{ class:size          }"> <span data-bind="text:size            "></span></td></tr>
+    <tr data-bind="if:property_type !='None'"> <td>Property type         </td><td data-bind="attr:{ class:property_type }"> <span data-bind="text:property_type   "></span></td></tr>
+    <tr data-bind="if:floor_level   !='None'"> <td>Floor level           </td><td data-bind="attr:{ class:floor_level   }"> <span data-bind="text:floor_level     "></span></td></tr>
+    <tr data-bind="if:parking       !='None'"> <td>Parking               </td><td data-bind="attr:{ class:parking       }"> <span data-bind="text:parking         "></span></td></tr>
+    <tr data-bind="if:pet           !='None'"> <td>Allow Pet             </td><td data-bind="attr:{ class:pet           }"> <span data-bind="text:pet             "></span></td></tr>
+    <tr data-bind="if:smoke         !='None'"> <td>Allow Smoking         </td><td data-bind="attr:{ class:smoke         }"> <span data-bind="text:smoke           "></span></td></tr>
+    <tr data-bind="if:private_bath  !='None'"> <td>Private bath          </td><td data-bind="attr:{ class:private_bath  }"> <span data-bind="text:private_bath    "></span></td></tr>
+    <tr data-bind="if:washer_dryer  !='None'"> <td>Washer dryer          </td><td data-bind="attr:{ class:washer_dryer  }"> <span data-bind="text:washer_dryer    "></span></td></tr>
+    <tr data-bind="if:kitchen_access!='None'"> <td>With kitchen access   </td><td data-bind="attr:{ class:kitchen_access}"> <span data-bind="text:kitchen_access  "></span></td></tr>
+    <tr data-bind="if:internet      !='None'"> <td>Internet access       </td><td data-bind="attr:{ class:internet      }"> <span data-bind="text:internet        "></span></td></tr>
+    <tr data-bind="if:cable_tv      !='None'"> <td>With Cable tv         </td><td data-bind="attr:{ class:cable_tv      }"> <span data-bind="text:cable_tv        "></span></td></tr>
+</table>
+    
+            </div>
+            <div class="span4">
+                <span class="detail_header">Community Features</span>
+                <table>
+    <tr data-bind="if:park         !='None' "> <td>Park around           </td><td data-bind="attr:{ class:park        }"> <span data-bind="text:park            "></span></td></tr>
+    <tr data-bind="if:play_ground  !='None' "> <td>Play ground           </td><td data-bind="attr:{ class:play_ground }"> <span data-bind="text:play_ground     "></span></td></tr>
+    <tr data-bind="if:tennis       !='None' "> <td>Tennis court          </td><td data-bind="attr:{ class:tennis      }"> <span data-bind="text:tennis          "></span></td></tr>
+    <tr data-bind="if:basketball   !='None' "> <td>Basketball court      </td><td data-bind="attr:{ class:basketball  }"> <span data-bind="text:basketball      "></span></td></tr>
+    <tr data-bind="if:swim_pool    !='None' "> <td>Swimming pool         </td><td data-bind="attr:{ class:swim_pool   }"> <span data-bind="text:swim_pool       "></span></td></tr>
+    <tr data-bind="if:jacuzzi      !='None' "> <td>Jacuzzi               </td><td data-bind="attr:{ class:jacuzzi     }"> <span data-bind="text:jacuzzi         "></span></td></tr>
+    <tr data-bind="if:gym          !='None' "> <td>Gym                   </td><td data-bind="attr:{ class:gym         }"> <span data-bind="text:gym             "></span></td></tr>
+    <tr data-bind="if:bbq_area     !='None' "> <td>BBQ area              </td><td data-bind="attr:{ class:bbq_area    }"> <span data-bind="text:bbq_area        "></span></td></tr>
+                    
+</table>
+    
+            </div>
+            <div class="span4">
+                <span class="detail_header">Rent-included item</span>
+                <table>
+    <tr data-bind="if:rent_internet   !='None'"> <td>Internet            </td><td data-bind="attr:{ class:rent_internet   }"> <span data-bind="text:rent_internet    "></span></td></tr>
+    <tr data-bind="if:rent_cable_tv   !='None'"> <td>Cable_tv            </td><td data-bind="attr:{ class:rent_cable_tv   }"> <span data-bind="text:rent_cable_tv    "></span></td></tr>
+    <tr data-bind="if:rent_water      !='None'"> <td>Water               </td><td data-bind="attr:{ class:rent_water      }"> <span data-bind="text:rent_water       "></span></td></tr>
+    <tr data-bind="if:rent_gas        !='None'"> <td>Gas                 </td><td data-bind="attr:{ class:rent_gas        }"> <span data-bind="text:rent_gas         "></span></td></tr>
+    <tr data-bind="if:rent_electricity!='None'"> <td>Electricity         </td><td data-bind="attr:{ class:rent_electricity}"> <span data-bind="text:rent_electricity "></span></td></tr>
+    <tr data-bind="if:rent_garbage    !='None'"> <td>Garbage             </td><td data-bind="attr:{ class:rent_garbage    }"> <span data-bind="text:rent_garbage     "></span></td></tr>
+    <tr data-bind="if:rent_parking    !='None'"> <td>Parking             </td><td data-bind="attr:{ class:rent_parking    }"> <span data-bind="text:rent_parking     "></span></td></tr>
+                    
+</table>
+    
+            </div>     
+        </div>
+            </section>
+
+            <section id="comment">
+        </div>
+
+
+        <br />
+            <table class="table table-hover">
+                <tr>
+                    <td>COMMENTS:</td>
+                </tr>
+            </table>
+            
+        
+        <table data-bind="foreach:comments"  class="table table-hover">
+            <div class="comment">
+               <tr> <td class="comment_item" data-bind="text:commenter"></td>
+                <td class="comment_item" data-bind="text:comment_text">   </td> </tr>
+            </div>
+
+        </table>
+      
+        <div data-bind="if:showComment()">
+            <ul class="form">
+                <li>
+                    <label>Comment:</label>
+                    <textarea data-bind="value:textarea_comment"></textarea>  <a href="#" data-bind="click:leaveComment">COMMENT</a>
+                </li>
+            </ul>
+           
+        </div>
+            </section>
+        <br />
+        <div data-bind="if:showEdit()">
+            <a data-bind="click:edit">EDIT</a>
+            <form data-bind="attr: { action: up_load_domain }" enctype="multipart/form-data" method="post">
+                <input type=hidden data-bind="attr: { value: event_id }" name="event_id" />
+            <section class="info" data-bind="with:poll">    
+            1.<input type="file" name="image1"/><span data-bind="visible: room_pic1!=''"><i class="icon-upload"></i>uploaded</span><br>
+            2.<input type="file" name="image2"/><span data-bind="visible: room_pic2!=''"><i class="icon-upload"></i>uploaded</span><br>
+            3.<input type="file" name="image3"/><span data-bind="visible: room_pic3!=''"><i class="icon-upload"></i>uploaded</span><br>
+            4.<input type="file" name="image4"/><span data-bind="visible: room_pic4!=''"><i class="icon-upload"></i>uploaded</span><br>
+            5.<input type="file" name="image5"/><span data-bind="visible: room_pic5!=''"><i class="icon-upload"></i>uploaded</span><br>
+            6.<input type="file" name="image6"/><span data-bind="visible: room_pic6!=''"><i class="icon-upload"></i>uploaded</span><br>    
+            7.<input type="file" name="image7"/><span data-bind="visible: room_pic7!=''"><i class="icon-upload"></i>uploaded</span>  
+            </section><br>
+            <input type="submit" value="submit" >    
+            </form>            
+            <a href="#" data-bind="click:remove">REMOVE</a>
+        </div>
+        
+                    <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>  
+            </div>
+        </div>
+        </div>
+
+    <!-- comp -->
+
+
+    <!-- script -->
+<!--    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script src="django_facebook/js/facebook.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/sammy.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+<script>
+    facebookAppId = '490262681101649';
+    facebookDefaultScope = ["email", "user_about_me", "user_birthday", "user_website", "user_friends"];
+    staticUrl = '/static/';
+    function facebookJSLoaded(){
+        FB.init({appId: facebookAppId, status: false, cookie: true, xfbml: true, oauth: true});
+    }
+    window.fbAsyncInit = facebookJSLoaded;
+    F = new facebookClass(facebookAppId);
+    F.load();
+    
+ 
+</script>    
+ 
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+
+    
+<div class="">     
+    <div class="row-fluid">
+
+        <div class="">
+        <div class="tabs">
+                
+            <section class="big_pic" id="big_pic">
+                <div ng-show="loading">Loading...</div>
+            <div class="big_card">
+           <div id="myCarousel" class="carousel slide"  >
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active:$first, slide_ind:1 }" ng-repeat="img in poll.imgs"></li>
+
+        
+          </ol>
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+              <div class="item" ng-class="{active:$first}"  ng-repeat="img in poll.imgs"><img ng-src="media/{{img}}" id="big_card_pic" ></div>
+        
+          </div>
+
+          <!-- Carousel nav -->
+          <span class="carousel-control left"  data-slide="prev" data-target="#myCarousel" ng-show="poll.imgs.length>0">&lsaquo;</span>
+          <span class="carousel-control right"  data-slide="next" data-target="#myCarousel" ng-show="poll.imgs.length>0">&rsaquo;</span>
+        </div>
+              
+                </div>
+<div class="fb-like" data-href="http://rentlisting-snowleo.rhcloud.com/index.html#event/{{poll.pk}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>            
+            </section>
+            <div class="top_space_for_pic"></div>
+            <div id="big_card_bar">
+                <div class="big_card_bar_content">
+                    {{poll.num_bed}} bedroom condor for rent, {{poll.city}}</span>,
+                    ${{poll.rent}}</span>
+                </div>
+            </div>
+            <div class="big_card_main_content" data-bind="with:poll">
+            How you are connected:
+                <div id="big_card_connection">
+                    <div data-bind="with:$root.user" id="connection_user">
+                        <div data-bind="style: { 'backgroundImage': 'url(media/'+profile_pic()+')'}" class="big_card_poster_profile_pic" >         
+                            <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                        </div>
+                        <span data-bind="text:username"></span>
+                    </div>
+                    <div id="connection_status">
+                        <span data-bind="text:connection"></span>
+                        <div data-bind="visible:connection.code==-1">lalala</div>
+                    </div>
+                    <div id="connection_poster">
+                        <div data-bind="style: { 'backgroundImage': 'url(media/'+poster_fb_pic+')'}" class="big_card_poster_profile_pic" >     
+                            <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                        </div>
+                    </div>
+                
+                </div>
+                <div id="bgi_card_poster_content">
+                    <div id="big_card_poster_pic">
+                        <div data-bind="visible:poster_fb_pic">
+                            <div data-bind="style: { 'backgroundImage': 'url(media/'+poster_fb_pic+')'}" class="big_card_poster_profile_pic" >     
+                                <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                            </div>
+                        </div>
+                        <span data-bind="text:user_field"></span>                    
+                    </div>
+                    <div id="big_card_content">
+                        <div  class="big_card_content_text">
+                            <span data-bind="text:content"></span>
+                        </div>
+                    </div>
+                    <div id="contact_poster_buttoms_div">
+                        <div class="big_card_contact_buttoms" style=" background-color: #bd2c00 ;color: white;">Rquest to contract</div>
+                        <div class="big_card_contact_buttoms">Contact <span data-bind="text:user_field"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="big_card_event_detail" data-bind="with:poll">
+             <div class="row-fluid high_light_detail">
+                 <div class="span3" data-bind="if:pet!='None'">
+                     >Allow Pet:<span data-bind="text:pet"></span>
+                 </div>
+                 <div class="span3" data-bind="if:smoking!='None'">
+                     >Allow smoking:<span data-bind="text:smoking"></span>
+                 </div>
+                 <div class="span3" data-bind="if:washer_dryer!='None'">
+                     >Washer dryer:<span data-bind="text:washer_dryer"></span>
+                 </div>
+                 <div class="span3" data-bind="if:parking!='None'">
+                     >Parking:<span data-bind="text:parking"></span>
+                 </div>                 
+             </div>
+        <div class="row-fluid">
+            <div class="big_card_detail_column">
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The Property</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        city:<br>
+                        Free way:<br>
+                        Properity type:<br>
+                        size:<br>
+                        Bed/ Bath:<br>                        
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        <span data-bind="text:city"></span><br>
+                        <span data-bind="text:free_way"></span><br>
+                        <span data-bind="text:property_type"></span><br>
+                        <span data-bind="text:size"></span><br>
+                        <span data-bind="text:num_bed"></span>B <span data-bind="text:num_bath"></span>b<br>                        
+                    </div>                    
+                </div>
+                <div class="big_card_line"></div>
+                
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The Lease</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        Rent:<br>
+                        Utilities:<br>
+                        Term:<br>
+                        Kitchen Access:<br>
+                        Parking:<br>
+                        Smoking:<br>
+                        Overnight Guest:<br>
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        ${{poll.rent}}</span><br>
+                        <span data-bind="text:utilities"></span><br>
+                        <span data-bind="text:term"></span><br>
+                        <span data-bind="text:kitchen_access"></span><br>
+                        <span data-bind="text:parking"></span><br>
+                        <span data-bind="text:smoking"></span><br>
+                        <span data-bind="text:over_night_guest"></span><br>
+                    </div>                    
+
+                </div>
+                <div class="big_card_line"></div>     
+                
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The Amenity</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        Washer & Dryer:<br>
+                        Funiture:<br>
+                        Swimming Pool:<br>
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        <span data-bind="text:washer_dryer"></span><br>
+                        <span data-bind="text:funiture"></span><br>
+                        <span data-bind="text:swim_pool"></span><br>
+                    </div>                    
+                </div>
+                <div class="big_card_line"></div> 
+
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The People</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        About You:<br>
+                        About Us:<br>
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        <span data-bind="text:about_you"></span><br>
+                        <span data-bind="text:about_us"></span><br>
+                    </div>                    
+                </div>
+               
+    
+            </div>     
+            <div id="big_card_comment_div">
+                Review:
+                <div data-bind="foreach:$parent.comments"  class="big_card_comment_row">
+                    <div class="big_card_comment">
+                        <div class="big_card_commeter_pic">
+                            <div data-bind="visible:commenter_pic">
+                                <div data-bind="style: { 'backgroundImage': 'url(media/'+commenter_pic+')'}" class="big_card_poster_profile_pic" >     
+                                    <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                                </div>
+                            </div>
+                            <span data-bind="text:commenter"></span>                    
+                        </div>
+                        
+                        <div class="big_card_comment_text">
+                            <div  class="big_card_content_text">
+                                <span data-bind="text:comment_text"></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+        
+                </div>                
+            </div>
+            
+        </div>
+            </div>
+
+            <section id="comment">
+        </div>
+
+
+        <br />
+            <table class="table table-hover">
+                <tr>
+                    <td>COMMENTS:</td>
+                </tr>
+            </table>
+            
+        
+
+      
+        <div data-bind="if:showComment()">
+            <ul class="form">
+                <li>
+                    <label>Comment:</label>
+                    <textarea data-bind="value:textarea_comment"></textarea>  <a href="#" data-bind="click:leaveComment">COMMENT</a>
+                </li>
+            </ul>
+           
+        </div>
+            <input class="" type="text" data-bind="value:ask_q_context" /> <a href="#" data-bind="click:ask_poster_question">ASK Q</a>
+            </section>
+        <br />
+        <div data-bind="if:showEdit()">
+            <a data-bind="click:edit">EDIT</a>
+            <form data-bind="attr: { action: up_load_domain }" enctype="multipart/form-data" method="post">
+            
+                <input type=hidden data-bind="attr: { value: event_id }" name="event_id" />
+            <section class="info" data-bind="with:poll">    
+            1.<input type="file" name="image1"/><span data-bind="visible: room_pic1!=''"><i class="icon-upload"></i>uploaded</span><br>
+            2.<input type="file" name="image2"/><span data-bind="visible: room_pic2!=''"><i class="icon-upload"></i>uploaded</span><br>
+            3.<input type="file" name="image3"/><span data-bind="visible: room_pic3!=''"><i class="icon-upload"></i>uploaded</span><br>
+            4.<input type="file" name="image4"/><span data-bind="visible: room_pic4!=''"><i class="icon-upload"></i>uploaded</span><br>
+            5.<input type="file" name="image5"/><span data-bind="visible: room_pic5!=''"><i class="icon-upload"></i>uploaded</span><br>
+            6.<input type="file" name="image6"/><span data-bind="visible: room_pic6!=''"><i class="icon-upload"></i>uploaded</span><br>    
+            7.<input type="file" name="image7"/><span data-bind="visible: room_pic7!=''"><i class="icon-upload"></i>uploaded</span>  
+            </section><br>
+            <input type="submit" value="submit" >    
+            </form>            
+            <a href="#" data-bind="click:remove">REMOVE</a>
+        </div>
+        
+                    <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>  
+            </div>
+        </div>
+        </div>
+    

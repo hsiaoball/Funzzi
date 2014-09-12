@@ -1,0 +1,26 @@
+    <script type="text/html" id="view_create_account">
+        <h2 class="siteTitle">
+            Rental Listing
+        </h2>
+        <div data-bind="with:user">
+            <div class="btn btn_black" data-bind="click:$root.login">
+                Back
+            </div>               
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password2" placeholder="Plz repeat Password..." />
+                </li>
+            
+            </ul>
+            <strong data-bind="text: error_msg"></strong>
+            <div class="btn btn_black" data-bind="click:doCreate">
+                Submit
+            </div>
+        </div>
+    </script>    

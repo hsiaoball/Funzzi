@@ -5,8 +5,7 @@ from login import views
 
 urlpatterns = patterns('',
     # ex: /polls/
-     url(r'^$', views.index, name='index'),
-     url(r'^login/$', views.login, name='login'),
+    url(r'^$', views.index, name='index'),
     # ex: /polls/5/
     url(r'^create/$', views.create, name='create'),
     url(r'^update/$', views.update, name='update'),

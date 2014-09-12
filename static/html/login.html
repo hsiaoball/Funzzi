@@ -1,0 +1,34 @@
+    <script type="text/html" id="view_login" >
+        <div id="view_login_div">
+        <h2 class="siteTitle">
+            Login:
+        </h2>
+            
+        <div data-bind="with:user">
+            <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>   
+            <div class="btn btn_black" data-bind="click:go2Create">
+                or Sign up
+            </div>                     
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+            </ul>
+            <div class="forget">
+                Forget Password
+            </div>
+         
+            <div class="btn btn_black" data-bind="click:doLogin">
+                Log In
+            </div>
+            
+      
+        </div>
+        </div>
+    </script>
+    

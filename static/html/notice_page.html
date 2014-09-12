@@ -1,0 +1,30 @@
+  
+
+        <div data-bind="with:user">
+        <h2 class="siteTitle">
+            Notice for <span data-bind="text:username"></span>
+        </h2>
+        <table data-bind="foreach:notices"  class="table table-hover">
+            <div class="comment">
+               <tr data-bind="click:$parent.click_conversation">
+                   <td data-bind="if:un_read_notice=='1'">Unread</td> <td> 
+                   <td class="comment_item">
+                        <div data-bind="text:notice_giver">
+                        </div>
+                        <div data-bind="visible:giver_pic">
+                            <img data-bind="attr: { src: 'media/'+giver_pic } " class="fb-img">
+                            <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                        </div>
+                   </td>
+                   <td class="comment_item" data-bind="text:notice_type"></td>
+                   <td class="comment_item" ><a href="#" data-bind="click:$parent.click_event"><span data-bind="text:post_id"></span></a></td>
+                   <td class="comment_item"><div data-bind="text:$.format.date(date,'MMM. dd. yyyy')"></div><div data-bind="text:time"></div></td> </td>
+                </tr>
+            </div>
+
+        </table>
+            <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>               
+        </div>
+

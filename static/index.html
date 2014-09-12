@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 
 <head>
     <meta charset="utf-8" /> 
@@ -338,7 +338,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 </style>
 
-<body data-spy="scroll" data-target=".navbar">
+<body>
  
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -349,626 +349,103 @@ input[type="range"]::-webkit-slider-thumb {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
     
-<div class="row navi_menu main_header">
+<div class="row navi_menu main_header" ng-controller="ctrl_index" data-ng-init="check_login()">
     <a href="index.html#main"><img src="img/logo.png" class="logo"></a>
   <div class="head_text">
-                <div class="headlinks" data-bind="with:$root.user">
-                    <section data-bind="visible:!user_id()" class="header_text">                        
-                        <a href="index.html#login" style="color: white;"  class="various_login"  data-fancybox-type="iframe">Login</a>
+                <div class="headlinks">
+                    <section ng-show="user==0" class="header_text">                        
+                        {{user.username}}<a href="#view_login_div" style="color: white;"  class="various_login">Login</a>
                     </section>
-                    <section data-bind="visible:!!user_id()" class="header_text">
-                       Hi <a href="#" data-bind="click:$root.user.confirm_email"><span data-bind="text:username"  style="color: white;"></span></a> You have <a href="#" data-bind="click:$root.notice"><span data-bind="text:user_unread_notice_number" style="color: white;"></span></a> notices. <span data-bind="click:doLogout">LOGOUT</span>
+                    <section ng-show="user!=0" class="header_text">
+                        <div id="notice_index">
+                        <span style="color: white; float: left;">notice({{User_info.user.un_read_notice_num}})</span>
+                        </div>
+                        <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                            <span  style="color: white;">{{user.username}}</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="logout()">Logout</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Account setting</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Help</a></li>
+                        </ul>
+             
                     </section>                    
                 </div>      
 
   </div>
-</div>    
 
-    <!-- AppView -->
-    <section id="app" data-bind="with: VM">
-        <div class="view" data-bind="css: name">
-            <div class="headlinks" data-bind="with:$parent.user">
-                <section data-bind="visible:!user_id()">
-                    <a class="share"></a>
-                    <a class="user" data-bind="click:go2login"></a>
-                </section>
-                <section data-bind="visible:!!user_id()">
-                    <a class="notify"></a>
-                    <a class="share"></a>
-                    <a class="user" data-bind="click:doLogout"></a>
-                </section>
+    <div style="display:none">
+        <div id="view_login_div"> 
+            <div id="login_top_div">
+            <img src="img/logo.png" id="login_logo" >
+        <h4 id="login_title">
+            Login with you favorite social platform and explore the network:
+        </h4>
             </div>
-            <div class="body" data-bind="template: { name: body, afterRender: init }"></div>
-        </div>
-    </section>
-    <br>
-<!--    
-<div class="fb-like" data-href="http://rentlisting-snowleo.rhcloud.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>    -->
-    <!-- views -->
-    <script type="text/html" id="view_main" >
-        <div class="top_image">
-            <img src="/img/whiteRoom3.jpg" class="container-liquid " id="main_top_pic">
-        </div>
-            <div id="slogan">
-                <div class="slogan_text">Rent & Lease Through friends</div>
-            </div>     
-        <div class="main_group_after_pic">
-        <div class="search_block">
-            <div class="search_block_content">
-  <input type="text" class="input-medium search-query" placeholder="ex:95050" data-bind="value:$root.search_zip">
-  <button type="submit" class="btn btn"  data-bind="click:search_result">Search</button>            
-            </div>
-        </div>
-        <div class="main_content">
-            <div class="blcck_container">
-            <div class="block_row">
-                <div class="feature_group feature_group0">
-                    <div class="feature_text feature_text0" data-bind="with:$root.feature_posts_0">
-                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
-                        <span data-bind="text:zip"></span><br>
-                        $<span data-bind="text:rent"></span>                        
-                    </div>                
-                    <div data-bind="with:$root.feature_posts_0,style: { 'backgroundImage': $root.feature_img_url_0}" class="feature_div feature_div0" >
-                        <div data-bind="click:$root.click_poll" class="blocks feature_img"></div>
-                    </div>
-                </div>
-                <div class="feature_group feature_group1">
-                    <div class="feature_text feature_text1" data-bind="with:$root.feature_posts_1">
-                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
-                        <span data-bind="text:zip"></span><br>
-                        $<span data-bind="text:rent"></span>                        
-                    </div>                 
-                    <div data-bind="with:$root.feature_posts_1,style: { 'backgroundImage': $root.feature_img_url_1}" class="feature_div feature_div1">
-                        <div data-bind="click:$root.click_poll" class="blocks feature_img"></div>
-                    </div>
-                </div>
-                <a href="/login/login/" class="various_login"  data-fancybox-type="iframe">
-                <div class="blocks block_orange" class="feature_div">
-                    LogIn
-                </div>
-                </a>    
-            </div>
-            <div class="block_row">
-                <div class="feature_group feature_group2">
-                    <div class="feature_text feature_text2" data-bind="with:$root.feature_posts_2">
-                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
-                        <span data-bind="text:zip"></span><br>
-                        $<span data-bind="text:rent"></span>                        
-                    </div>                      
-                    <div data-bind="with:$root.feature_posts_2,style: { 'backgroundImage': $root.feature_img_url_2}" class="feature_div feature_div2">
-                        <div data-bind="click:$root.click_poll" class="blocks feature_img"></div>
-                    </div>
-                </div>
-                <div class="blocks block_yellow">
-                    NestQ
-                </div>
-                <div class="feature_group feature_group3">
-                    <div class="feature_text feature_text3" data-bind="with:$root.feature_posts_3">
-                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
-                        <span data-bind="text:zip"></span><br>
-                        $<span data-bind="text:rent"></span>                        
-                    </div>                      
-                    <div data-bind="with:$root.feature_posts_3,style: { 'backgroundImage': $root.feature_img_url_3}" class="feature_div feature_div3">
-                        <div data-bind="click:$root.click_poll" class="blocks feature_img"></div>
-                    </div>        
-                </div>
-            </div>
-            <div class="block_row">
-                <div class="blocks block_orange">
-                    Meet the team
-                </div>
-                <div class="feature_group feature_group4">
-                    <div class="feature_text feature_text4" data-bind="with:$root.feature_posts_4">
-                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
-                        <span data-bind="text:zip"></span><br>
-                        $<span data-bind="text:rent"></span>                        
-                    </div>      
-                    <div data-bind="with:$root.feature_posts_4,style:{'backgroundImage': $root.feature_img_url_4}" class="feature_div feature_div4">
-                        <div data-bind="click:$root.click_poll" class="blocks feature_img"></div>
-                    </div>
-                </div>    
-                <div class="blocks block_grey" data-bind="click:$root.post_event">
-                    POST
-                </div>            
-            </div>            
-            </div>
-        </div>
-        <div class="main_bottom">
-            aa
-        </div>
-        </div>
-
-    </script>    
-    <script type="text/html" id="view_login" >
-        <h2 class="siteTitle">
-            Login:
-        </h2>
+            <div id="login_dot_line"></div>
+            <div id="login_main_text">
+                With social media login, we can help you to find out how many of your friends have post on RenMO. Also find out your connections with different poster. Find a relible connection to get a perfect home!
             
-        <div data-bind="with:user">
-            <div class="btn btn_black" data-bind="click:back">
-                Back
-            </div>   
-            <div class="btn btn_black" data-bind="click:go2Create">
-                or Sign up
-            </div>                     
+            </div>
+            <div id="login_fb_title">
+                Log in to Facebook to create your RenMo account.
+            </div>
+        <form action="/facebook/connect/?facebook_login=1" method="post" id="facebook_login_form">
+            <input type="hidden" value="" name="next">
+            <input type="hidden" value="" name="register_next">
+            <input type="hidden" value="" name="error_next">
+            <input onclick="F.connect(this.parentNode); return false;" type="image" src="django_facebook/images/facebook_login.png">
+            <font size=3>or</font>
+
+        </form>            
+        <div data-bind="with:user" id="email_login">               
             <ul class="form">
                 <li>
-                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                    <input type="text" ng-model="login_data.username" placeholder="Email..." />
                 </li>
                 <li>
-                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                    <input type="password" ng-model="login_data.password" placeholder="Password..." />
                 </li>
             </ul>
             <div class="forget">
                 Forget Password
             </div>
-         
-            <div class="btn btn_black" data-bind="click:doLogin">
+            {{error_msg}}{{user.username}}<br>
+            <div class="btn btn_black" ng-click="login_user(login_data)">
                 Log In
             </div>
-            
+                        <div class="btn btn_black" data-bind="click:go2Create">
+                Sign up
+            </div>     
       
         </div>
-    </script>
-    <script type="text/html" id="view_create_account">
-        <h2 class="siteTitle">
-            Rental Listing
-        </h2>
-        <div data-bind="with:user">
-            <div class="btn btn_black" data-bind="click:$root.login">
-                Back
-            </div>               
-            <ul class="form">
-                <li>
-                    <input type="text" data-bind="value:username" placeholder="Email..." />
-                </li>
-                <li>
-                    <input type="password" data-bind="value:password" placeholder="Password..." />
-                </li>
-                <li>
-                    <input type="password" data-bind="value:password2" placeholder="Plz repeat Password..." />
-                </li>
-            
-            </ul>
-            <strong data-bind="text: error_msg"></strong>
-            <div class="btn btn_black" data-bind="click:doCreate">
-                Submit
-            </div>
         </div>
-    </script>    
-    <script type="text/html" id="view_notice_page">
-        <div data-bind="with:user">
-        <h2 class="siteTitle">
-            Notice for <span data-bind="text:username"></span>
-        </h2>
-        <table data-bind="foreach:notices"  class="table table-hover">
-            <div class="comment">
-               <tr data-bind="click:$parent.click_conversation">
-                   <td data-bind="if:un_read_notice=='1'">Unread</td> <td> 
-                   <td class="comment_item">
-                        <div data-bind="text:notice_giver">
-                        </div>
-                        <div data-bind="visible:giver_pic">
-                            <img data-bind="attr: { src: 'media/'+giver_pic } " class="fb-img">
-                            <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
-                        </div>
-                   </td>
-                   <td class="comment_item" data-bind="text:notice_type"></td>
-                   <td class="comment_item" ><a href="#" data-bind="click:$parent.click_event"><span data-bind="text:post_id"></span></a></td>
-                   <td class="comment_item"><div data-bind="text:$.format.date(date,'MMM. dd. yyyy')"></div><div data-bind="text:time"></div></td> </td>
-                </tr>
-            </div>
-
-        </table>
-            <div class="btn btn_black" data-bind="click:back">
-                Back
-            </div>               
-        </div>
-    </script>
-    <script type="text/html" id="view_conversation_page">
-        
-        <h2 class="siteTitle">
-            Conversation with <span data-bind="text:asker_id"></span>
-        </h2>
-        <table data-bind="foreach:conversations"  class="table table-hover">
-            <div class="comment">
-               <tr><td data-bind="if:host!='False'">host</td> <td> <td class="comment_item" data-bind="text:comment_text"></td><td class="comment_item" data-bind="text:commenter_id"></td><td class="comment_item" ></td><td class="comment_item" data-bind="text:$.format.date(pub_date,'MMM. d. yyyy. hh .mmm')"></td> </td></tr>
-            </div>
-        
-        </table>
-        <input class="" type="text" data-bind="value:reply_conversation" /> <a href="#" data-bind="click:send_reply_conversation">Reply</a><br>
-            <div class="btn btn_black" data-bind="click:$root.back">
-                Back
-            </div>               
-
-    </script>
-    <script type="text/html" id="view_search">   
-
-    <div class="fb-facepile" data-app-id="490262681101649"  data-max-rows="1" data-colorscheme="light" data-size="large" data-show-count="true"></div> 
-        <div class="title_graph">
-            <h2 class="siteTitle">
-                Search Result <h2 data-bind="if:$root.search_zip">for "<span data-bind="text:$root.search_zip"></span>"</h2>:   
-            </h2>      
-           <div class="row-fluid">
-        <div class="search_filter span2 ">
-ADJUST:<br>
-Rent Range: $<span data-bind="text:rent_min"></span>-$<span data-bind="text:rent_max"></span><br>Max:<input data-bind="value: rent_max, valueUpdate: 'input', attr:{min:range_min,max:range_max}" type="range"/><br>
-<!--<div style="margin: 10px" data-bind="slider: rent_max, sliderOptions: {min: 0, max: 100, range: 'min', step: 1}"></div>-->
-
-min:<input data-bind="value: rent_min, valueUpdate: 'input', attr:{min:range_min,max:range_max}" type="range"/><br>
-<!--<div style="margin: 10px" data-bind="slider: rent_min, sliderOptions: {min: 0, max: 100, range: 'min', step: 1}"></div>-->
-Bed:<span data-bind="text:sel_bed_num"></span><br>
-            <input data-bind="value: sel_bed_num, valueUpdate: 'input', attr:{min:0,max:bed_range_max}" type="range"/><br>
-Bath:<span data-bind="text:sel_bath_num"></span><br>
-            <input data-bind="value: sel_bath_num, valueUpdate: 'input', attr:{min:0,max:bath_range_max}" type="range"/><br>            
-            <div class="btn btn_black" data-bind="click:reset_filter">
-                Reset
-            </div>              
-        </div>
-        <div class="event_column">
-            <ul class="event_list" data-bind="template:{name:'tmpl_event',foreach:polls_filter}"></ul>
-            <div data-bind="if:loading">Loading...</div>
-<!--            <div data-bind="if:polls_filter.length==0">Found no result</div>-->
-            <div class="btn btn_black" data-bind="click:back">
-                Back
-            </div>  
-        </div>
-        </div>
-         <br>
- 
-    </script>
-    <script type="text/html" id="view_slide">
-
-   </div>   
-        </script>
-    
-    <script type="text/html" id="view_event">
-<div class="container-fluid ">     
-    <div class="row-fluid">
-        <div class="span2 bs-docs-sidebar" id="event_sidebar">
- <ul class="nav nav-list bs-docs-sidenav affix navbar  " hidden>
-  <li class="nav-header">List Detail</li>
-  <li class="active"><a data-bind="#big_pic">Overview</a></li>
-  <li><a href="#event_detail">Detail</a></li>   
-  <li><a href="#map">Location MAP</a></li>
-  <li><a href="#comment">Comments</a></li>
-
-</ul>
-</div>
-        <div class="">
-        <div class="tabs">
-                
-            <section class="big_pic" data-bind="with:poll" id="big_pic">
-                <div data-bind="visible:$parent.loading">Loading...</div>
-            <div class="big_card">
-           <div id="myCarousel" class="carousel slide span8"  >
-          <ol class="carousel-indicators" data-bind="foreach:imgs">
-            <img data-target="#myCarousel" data-bind="attr:{
-                                                      'data-slide-to':$index, 
-                                                      src: 'media/'+img, 
-                                                      class: $index() === 0 ?'slide_ind active' : 'slide_ind'}"></li>
-        
-          </ol>
-          <!-- Carousel items -->
-          <div class="carousel-inner" data-bind="foreach:imgs">
-              <div class="item" data-bind="attr:{class:act} "><img data-bind="attr: { src: 'media/'+img } " ></div>
-        
-          </div>
-          <div class="carousel-inner" data-bind="if:imgs.length==0" >  
-              <div class="item active "><img src="/img/big_card_pic.jpg" ></div>
-          </div>
-          <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myCarousel" data-slide="prev"  data-bind="visible:imgs.length>1">&lsaquo;</a>
-          <a class="carousel-control right" href="#myCarousel" data-slide="next"  data-bind="visible:imgs.length>1">&rsaquo;</a>
-        </div>
-            <div class="big_card_info">
-                <span class="bed" data-bind="text:num_bed"></span> B
-                <span class="bath" data-bind="text:num_bath"></span> b
-                $<span class="bath" data-bind="text:rent"></span>/m
-               <br>
-                Avail: <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span>
-<!--                - <span data-bind="text:$.format.date(end_date,'MMM. d, yyyy')"></span>-->
-                <br><span data-bind="text:city"></span>
-                <span data-bind="text:state"></span>
-                <span data-bind="text:zip"></span>
-                
-            </div>    
-            <div class="big_card_poster">
-                Post by:<span class="bed" data-bind="text:user_field"></span>
-            </div>                    
-                </div>
-<div class="fb-like" data-bind="attr: { data-href:'http://rentlisting-snowleo.rhcloud.com/index.html#event/'+event_id()" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>            
-            </section>
-            <section id="event_detail" data-bind="with:poll">
-             <div class="row-fluid high_light_detail">
-                 <div class="span3" data-bind="if:pet!='None'">
-                     >Allow Pet:<span data-bind="text:pet"></span>
-                 </div>
-                 <div class="span3" data-bind="if:smoke!='None'">
-                     >Allow smoke:<span data-bind="text:smoke"></span>
-                 </div>
-                 <div class="span3" data-bind="if:washer_dryer!='None'">
-                     >Washer dryer:<span data-bind="text:washer_dryer"></span>
-                 </div>
-                 <div class="span3" data-bind="if:parking!='None'">
-                     >Parking:<span data-bind="text:parking"></span>
-                 </div>                 
-             </div>
-        <div class="row-fluid">
-            <div class="span4">
-                <span class="detail_header">Property</span>
-                <table>
-    <tr data-bind="if:size          !='None'"> <td>Total Size            </td><td data-bind="attr:{ class:size          }"> <span data-bind="text:size            "></span></td></tr>
-    <tr data-bind="if:property_type !='None'"> <td>Property type         </td><td data-bind="attr:{ class:property_type }"> <span data-bind="text:property_type   "></span></td></tr>
-    <tr data-bind="if:floor_level   !='None'"> <td>Floor level           </td><td data-bind="attr:{ class:floor_level   }"> <span data-bind="text:floor_level     "></span></td></tr>
-    <tr data-bind="if:parking       !='None'"> <td>Parking               </td><td data-bind="attr:{ class:parking       }"> <span data-bind="text:parking         "></span></td></tr>
-    <tr data-bind="if:pet           !='None'"> <td>Allow Pet             </td><td data-bind="attr:{ class:pet           }"> <span data-bind="text:pet             "></span></td></tr>
-    <tr data-bind="if:smoke         !='None'"> <td>Allow Smoking         </td><td data-bind="attr:{ class:smoke         }"> <span data-bind="text:smoke           "></span></td></tr>
-    <tr data-bind="if:private_bath  !='None'"> <td>Private bath          </td><td data-bind="attr:{ class:private_bath  }"> <span data-bind="text:private_bath    "></span></td></tr>
-    <tr data-bind="if:washer_dryer  !='None'"> <td>Washer dryer          </td><td data-bind="attr:{ class:washer_dryer  }"> <span data-bind="text:washer_dryer    "></span></td></tr>
-    <tr data-bind="if:kitchen_access!='None'"> <td>With kitchen access   </td><td data-bind="attr:{ class:kitchen_access}"> <span data-bind="text:kitchen_access  "></span></td></tr>
-    <tr data-bind="if:internet      !='None'"> <td>Internet access       </td><td data-bind="attr:{ class:internet      }"> <span data-bind="text:internet        "></span></td></tr>
-    <tr data-bind="if:cable_tv      !='None'"> <td>With Cable tv         </td><td data-bind="attr:{ class:cable_tv      }"> <span data-bind="text:cable_tv        "></span></td></tr>
-</table>
-    
-            </div>
-            <div class="span4">
-                <span class="detail_header">Community Features</span>
-                <table>
-    <tr data-bind="if:park         !='None' "> <td>Park around           </td><td data-bind="attr:{ class:park        }"> <span data-bind="text:park            "></span></td></tr>
-    <tr data-bind="if:play_ground  !='None' "> <td>Play ground           </td><td data-bind="attr:{ class:play_ground }"> <span data-bind="text:play_ground     "></span></td></tr>
-    <tr data-bind="if:tennis       !='None' "> <td>Tennis court          </td><td data-bind="attr:{ class:tennis      }"> <span data-bind="text:tennis          "></span></td></tr>
-    <tr data-bind="if:basketball   !='None' "> <td>Basketball court      </td><td data-bind="attr:{ class:basketball  }"> <span data-bind="text:basketball      "></span></td></tr>
-    <tr data-bind="if:swim_pool    !='None' "> <td>Swimming pool         </td><td data-bind="attr:{ class:swim_pool   }"> <span data-bind="text:swim_pool       "></span></td></tr>
-    <tr data-bind="if:jacuzzi      !='None' "> <td>Jacuzzi               </td><td data-bind="attr:{ class:jacuzzi     }"> <span data-bind="text:jacuzzi         "></span></td></tr>
-    <tr data-bind="if:gym          !='None' "> <td>Gym                   </td><td data-bind="attr:{ class:gym         }"> <span data-bind="text:gym             "></span></td></tr>
-    <tr data-bind="if:bbq_area     !='None' "> <td>BBQ area              </td><td data-bind="attr:{ class:bbq_area    }"> <span data-bind="text:bbq_area        "></span></td></tr>
-                    
-</table>
-    
-            </div>
-            <div class="span4">
-                <span class="detail_header">Rent-included item</span>
-                <table>
-    <tr data-bind="if:rent_internet   !='None'"> <td>Internet            </td><td data-bind="attr:{ class:rent_internet   }"> <span data-bind="text:rent_internet    "></span></td></tr>
-    <tr data-bind="if:rent_cable_tv   !='None'"> <td>Cable_tv            </td><td data-bind="attr:{ class:rent_cable_tv   }"> <span data-bind="text:rent_cable_tv    "></span></td></tr>
-    <tr data-bind="if:rent_water      !='None'"> <td>Water               </td><td data-bind="attr:{ class:rent_water      }"> <span data-bind="text:rent_water       "></span></td></tr>
-    <tr data-bind="if:rent_gas        !='None'"> <td>Gas                 </td><td data-bind="attr:{ class:rent_gas        }"> <span data-bind="text:rent_gas         "></span></td></tr>
-    <tr data-bind="if:rent_electricity!='None'"> <td>Electricity         </td><td data-bind="attr:{ class:rent_electricity}"> <span data-bind="text:rent_electricity "></span></td></tr>
-    <tr data-bind="if:rent_garbage    !='None'"> <td>Garbage             </td><td data-bind="attr:{ class:rent_garbage    }"> <span data-bind="text:rent_garbage     "></span></td></tr>
-    <tr data-bind="if:rent_parking    !='None'"> <td>Parking             </td><td data-bind="attr:{ class:rent_parking    }"> <span data-bind="text:rent_parking     "></span></td></tr>
-                    
-</table>
-    
-            </div>     
-        </div>
-            </section>
-
-            <section id="comment">
-        </div>
+    </div>
+</div>    
+    <!-- AppView -->
+    <div ng-view></div>
+    <br>
+<!--    
+<div class="fb-like" data-href="http://rentlisting-snowleo.rhcloud.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>    -->
+    <!-- views -->
 
 
-        <br />
-            <table class="table table-hover">
-                <tr>
-                    <td>COMMENTS:</td>
-                </tr>
-            </table>
-            
-        
-        <table data-bind="foreach:comments"  class="table table-hover">
-            <div class="comment">
-               <tr> <td class="comment_item" data-bind="text:commenter"></td>
-                <td class="comment_item" data-bind="text:comment_text">   </td> </tr>
-            </div>
-
-        </table>
-      
-        <div data-bind="if:showComment()">
-            <ul class="form">
-                <li>
-                    <label>Comment:</label>
-                    <textarea data-bind="value:textarea_comment"></textarea>  <a href="#" data-bind="click:leaveComment">COMMENT</a>
-                </li>
-            </ul>
-           
-        </div>
-            <input class="" type="text" data-bind="value:ask_q_context" /> <a href="#" data-bind="click:ask_poster_question">ASK Q</a>
-            </section>
-        <br />
-        <div data-bind="if:showEdit()">
-            <a data-bind="click:edit">EDIT</a>
-            <form data-bind="attr: { action: up_load_domain }" enctype="multipart/form-data" method="post">
-            
-                <input type=hidden data-bind="attr: { value: event_id }" name="event_id" />
-            <section class="info" data-bind="with:poll">    
-            1.<input type="file" name="image1"/><span data-bind="visible: room_pic1!=''"><i class="icon-upload"></i>uploaded</span><br>
-            2.<input type="file" name="image2"/><span data-bind="visible: room_pic2!=''"><i class="icon-upload"></i>uploaded</span><br>
-            3.<input type="file" name="image3"/><span data-bind="visible: room_pic3!=''"><i class="icon-upload"></i>uploaded</span><br>
-            4.<input type="file" name="image4"/><span data-bind="visible: room_pic4!=''"><i class="icon-upload"></i>uploaded</span><br>
-            5.<input type="file" name="image5"/><span data-bind="visible: room_pic5!=''"><i class="icon-upload"></i>uploaded</span><br>
-            6.<input type="file" name="image6"/><span data-bind="visible: room_pic6!=''"><i class="icon-upload"></i>uploaded</span><br>    
-            7.<input type="file" name="image7"/><span data-bind="visible: room_pic7!=''"><i class="icon-upload"></i>uploaded</span>  
-            </section><br>
-            <input type="submit" value="submit" >    
-            </form>            
-            <a href="#" data-bind="click:remove">REMOVE</a>
-        </div>
-        
-                    <div class="btn btn_black" data-bind="click:back">
-                Back
-            </div>  
-            </div>
-        </div>
-        </div>
-    </script>
-    <script type="text/html" id="view_post">
-        <h2 class="siteTitle">
-        POST Rental:
-            </h2>
-        <ul class="form">
-        
-            <div class="input-prepend">
-                <span class="add-on">Start Time</span>
-                <input class="date departure" type="text" data-bind="value:departure_time" /> 
-            </div><span class="post_error_msg" data-bind="text: departure_time_check"></span>
-            <br><div class="input-prepend">
-                <span class="add-on">End Time</span>
-                <input class="date return" type="text" data-bind="value:return_time" />
-            </div><span class="post_error_msg" data-bind="text: return_time_check"></span>
-            <br><div class="input-prepend">
-                <span class="add-on"># of Bed</span>
-                <input type="text" data-bind="value:num_bed" />
-            </div><span class="post_error_msg" data-bind="text: num_bed_check"></span>
-            <br><div class="input-prepend">
-                <span class="add-on"># of bath</span>
-                <input type="text" data-bind="value:num_bath" />
-            </div><span class="post_error_msg" data-bind="text: num_bath_check"></span>
-            <br><div class="input-prepend">
-                <span class="add-on">Address</span>
-                <input type="text" data-bind="value:address" />
-            </div><span class="post_error_msg" data-bind="text: address_check"></span>
-            <br><div class="input-prepend">
-                <span class="add-on">City</span>
-                <input type="text" data-bind="value:city" />
-            </div><span class="post_error_msg" data-bind="text: city_check"></span>
-            <br><div class="input-prepend">
-                <span class="add-on">State</span>
-                <input type="text" data-bind="value:state" />
-            </div><span class="post_error_msg" data-bind="text: state_check"></span>
-            <br><div class="input-prepend">
-                <span class="add-on">Zip</span>
-                <input type="number" data-bind="value:zip" />
-            </div><span class="post_error_msg" data-bind="text: zip_check"></span>
-            <br><div class="input-prepend input-append">
-                <span class="add-on">Rent </span>
-                <input class="span2"  data-bind="value:rent" type="number">
-                <span class="add-on">.00</span>
-            </div><span class="post_error_msg" data-bind="text: rent_check"></span>
-            <br><div class="input-prepend">
-                <label>Content</label>
-                <textarea data-bind="value:content" rows="3"></textarea>
-                </div><br><span class="post_error_msg" data-bind="text: content_check"></span>
-            </li>
-            
-        -----optional------
-        <div class="row-fluid">
-            <div class="span4">
-                <span class="detail_header">Property</span>
-                <table>
-    <tr> <td>size                  </td><td colspan=2><input type="number" name="size" data-bind="value:size"></td></tr> 
-    <tr> <td>property_type         </td><td colspan=2><select data-bind="options: property_type"></select></td></tr> 
-    <tr> <td>floor_level           </td><td colspan=2><input type="number" name="floor_level" data-bind="value:floor_level"></td></tr> 
-    <tr> <td>parking               </td><td colspan=2><select data-bind="options: parking"></select></td></tr> 
-    <tr> <td>pet                   </td><td colspan=2><select data-bind="options: pet"></select></td></tr>
-    <tr> <td>smoke                 </td><td>Yes <input type="radio" name="smoke           " value="1" data-bind="checked:smoke           "></td><td> No <input type="radio" name="smoke           " value="0" data-bind="checked:smoke           "></td></tr>
-    <tr> <td>private_bath          </td><td>Yes <input type="radio" name="private_bath    " value="1" data-bind="checked:private_bath    "></td><td> No <input type="radio" name="private_bath    " value="0" data-bind="checked:private_bath    "></td></tr>
-    <tr> <td>washer_dryer          </td><td colspan=2><select data-bind="options: washer_dryer"></select></td></tr>
-    <tr> <td>kitchen_access        </td><td>Yes <input type="radio" name="kitchen_access  " value="1" data-bind="checked:kitchen_access  "></td><td> No <input type="radio" name="kitchen_access  " value="0" data-bind="checked:kitchen_access  "></td></tr>
-    <tr> <td>internet              </td><td>Yes <input type="radio" name="internet        " value="1" data-bind="checked:internet        "></td><td> No <input type="radio" name="internet        " value="0" data-bind="checked:internet        "></td></tr>
-    <tr> <td>cable_tv              </td><td>Yes <input type="radio" name="cable_tv        " value="1" data-bind="checked:cable_tv        "></td><td> No <input type="radio" name="cable_tv        " value="0" data-bind="checked:cable_tv        "></td></tr>
-</table>
-    
-            </div>
-            <div class="span4">
-                <span class="detail_header">Community Features</span>
-                <table>
-    <tr> <td>park                  </td><td>Yes <input type="radio" name="park            " value="1" data-bind="checked:park            "></td><td> No <input type="radio" name="park            " value="0" data-bind="checked:park            "></td></tr>
-    <tr> <td>play_ground           </td><td>Yes <input type="radio" name="play_ground     " value="1" data-bind="checked:play_ground     "></td><td> No <input type="radio" name="play_ground     " value="0" data-bind="checked:play_ground     "></td></tr>
-    <tr> <td>tennis                </td><td>Yes <input type="radio" name="tennis          " value="1" data-bind="checked:tennis          "></td><td> No <input type="radio" name="tennis          " value="0" data-bind="checked:tennis          "></td></tr>
-    <tr> <td>basketball            </td><td>Yes <input type="radio" name="basketball      " value="1" data-bind="checked:basketball      "></td><td> No <input type="radio" name="basketball      " value="0" data-bind="checked:basketball      "></td></tr>
-    <tr> <td>swim_pool             </td><td>Yes <input type="radio" name="swim_pool       " value="1" data-bind="checked:swim_pool       "></td><td> No <input type="radio" name="swim_pool       " value="0" data-bind="checked:swim_pool       "></td></tr>
-    <tr> <td>jacuzzi               </td><td>Yes <input type="radio" name="jacuzzi         " value="1" data-bind="checked:jacuzzi         "></td><td> No <input type="radio" name="jacuzzi         " value="0" data-bind="checked:jacuzzi         "></td></tr>
-    <tr> <td>gym                   </td><td>Yes <input type="radio" name="gym             " value="1" data-bind="checked:gym             "></td><td> No <input type="radio" name="gym             " value="0" data-bind="checked:gym             "></td></tr>
-    <tr> <td>bbq_area              </td><td>Yes <input type="radio" name="bbq_area        " value="1" data-bind="checked:bbq_area        "></td><td> No <input type="radio" name="bbq_area        " value="0" data-bind="checked:bbq_area        "></td></tr>
-                    
-</table>
-    
-            </div>
-            <div class="span4">
-                <span class="detail_header">Rent-included item</span>
-                <table>
-    <tr> <td>rent_internet         </td><td>Yes <input type="radio" name="rent_internet   " value="1" data-bind="checked:rent_internet   "></td><td> No <input type="radio" name="rent_internet   " value="0" data-bind="checked:rent_internet   "></td></tr>
-    <tr> <td>rent_cable_tv         </td><td>Yes <input type="radio" name="rent_cable_tv   " value="1" data-bind="checked:rent_cable_tv   "></td><td> No <input type="radio" name="rent_cable_tv   " value="0" data-bind="checked:rent_cable_tv   "></td></tr>
-    <tr> <td>rent_water            </td><td>Yes <input type="radio" name="rent_water      " value="1" data-bind="checked:rent_water      "></td><td> No <input type="radio" name="rent_water      " value="0" data-bind="checked:rent_water      "></td></tr>
-    <tr> <td>rent_gas              </td><td>Yes <input type="radio" name="rent_gas        " value="1" data-bind="checked:rent_gas        "></td><td> No <input type="radio" name="rent_gas        " value="0" data-bind="checked:rent_gas        "></td></tr>
-    <tr> <td>rent_electricity      </td><td>Yes <input type="radio" name="rent_electricity" value="1" data-bind="checked:rent_electricity"></td><td> No <input type="radio" name="rent_electricity" value="0" data-bind="checked:rent_electricity"></td></tr>
-    <tr> <td>rent_garbage          </td><td>Yes <input type="radio" name="rent_garbage    " value="1" data-bind="checked:rent_garbage    "></td><td> No <input type="radio" name="rent_garbage    " value="0" data-bind="checked:rent_garbage    "></td></tr>
-    <tr> <td>rent_parking          </td><td>Yes <input type="radio" name="rent_parking    " value="1" data-bind="checked:rent_parking    "></td><td> No <input type="radio" name="rent_parking    " value="0" data-bind="checked:rent_parking    "></td></tr>
-                    
-</table>
-    
-            </div>     
-        </div>
-        </ul>
-        <a data-bind="click:post" class="btn btn-primary" href="#">POST</a>
-        <a href="#" data-bind="click:back" class="btn">BACK</a>
-    </script>
-    <!-- comp -->
-    <script type="text/html" id="tmpl_event">
-        <div class="event_card" data-bind="click:$parent.click" id="container_card">
-            <div class="row-fluid">
-                <div data-bind="visible: room_pic1!=''">
-                    <img data-bind="attr: { src: 'media/'+room_pic1 }" class="small_card_img">
-                </div>        
-                <div data-bind="visible: room_pic1==''">
-                    <img src=/img/nopic.jpg class="small_card_img">
-                </div>                      
-            <div id="row" class="row-fluid">
-                <div class="card_info">
-            <div class="flag">
-                <span class="bed" data-bind="text:num_bed"></span> B
-                <span class="bath" data-bind="text:num_bath"></span> b
-                $<span class="bath" data-bind="text:rent"></span>/m
-               <br>
-                Avail: <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span>
-<!--                - <span data-bind="text:$.format.date(end_date,'MMM. d, yyyy')"></span>-->
-                <br><span data-bind="text:city"></span>
-                <span data-bind="text:state"></span>
-                <span data-bind="text:zip"></span>
-                
-            </div>
-
-            <div class="line">
-                <div class="wrapper">
-                    <div class="adress">
-                        
-                        
-                    </div>
-
-                </div>
-            </div>
-
-                    </div>
-                </div>  
-        <div class="" id="card_poster">
-
-            <div data-bind="visible:poster_fb_pic">
-                <img data-bind="attr: { src: 'media/'+poster_fb_pic } " class="fb-img">
-                <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
-            </div>
-            <span data-bind="text:user_field"></span>
-            <div data-bind="visible:your_friend"> Posted by your friend!   </div>
-
-        </div>                  
-          </div>
-          
-        </div>
-
-        /
-    </script>
 
     <!-- script -->
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
 <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
-    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-resource.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
     <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
     <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script src="django_facebook/js/facebook.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="/js/sammy.js" type="text/javascript"></script>
+   
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/app-jq.js"></script>
 <script>

@@ -109,6 +109,7 @@ if 'OPENSHIFT_REPO_DIR' in os.environ:
     STATIC_ROOT = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'), 'wsgi', 'static')
 else:
     STATIC_ROOT = os.path.join('C:\Users\ChiYo Hsiao\Desktop\projects\/rentlisting\wsgi', 'static')
+    
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"

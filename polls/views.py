@@ -21,6 +21,15 @@ User= model_addfield
 logger = logging.getLogger(__name__)
 POST_PIC_MAX_SIZE=1*1024*1024
 @csrf_exempt
+
+
+class Obj(object):
+  _ids = 0
+  def __init__(self):
+    self.id = self._ids.next()	
+    if self.id > 1:
+	    raise NameError('More than one instance')
+
 def post_event(request):
     if request.user.is_authenticated():
         if 'event_id' in request.POST:
@@ -196,13 +205,14 @@ def add_pic(request):
     else:
         return HttpResponse("\"not login\"", content_type="application/json")  
 		
-def event_query(request):
-    if 'event_id' not in request.POST:
-	    return HttpResponse(request.POST, content_type="application/json")
-    try: poll = Poll.objects.get(pk=request.POST['event_id'])
+def event_query(request,poll_id):
+    try: poll = Poll.objects.get(pk=poll_id)
     except ObjectDoesNotExist:
        	return HttpResponse("\"event not exist\"", content_type="application/json")
     # logger.debug('1Something went wrong!')			
+    connection=[]
+    if request.user.is_authenticated():
+        connection=check_fb_mutual_frd(request.user.id,poll.user_pk)
     groups_and_items = {}
     comment=poll.comment_set.all()
     passanger=poll.guest_list_set.all()
@@ -213,29 +223,24 @@ def event_query(request):
 
 
     for comment in poll.comment_set.all():
-        comment_group.append( {'comment_text': comment.comment_text, 'commenter': get_username(comment.commenter_pk), 'pub_date':str(comment.pub_date) })	
+        comment_group.append( {'comment_text': comment.comment_text, 'commenter': get_username(comment.commenter_pk), 'commenter_pic': get_fb_pic(comment.commenter_pk), 'pub_date':str(comment.pub_date) })	
 
     img_group=[]
-    if poll.room_pic1 !="" and poll.room_pic1 !=None: img_group.append({'img':	str(poll.room_pic1),'act':'item '	})
-    if poll.room_pic2 !="" and poll.room_pic2 !=None: img_group.append({'img':	str(poll.room_pic2),'act':'item '	})
-    if poll.room_pic3 !="" and poll.room_pic3 !=None: img_group.append({'img':	str(poll.room_pic3),'act':'item '	})	
-    if poll.room_pic4 !="" and poll.room_pic4 !=None: img_group.append({'img':	str(poll.room_pic4),'act':'item '	})
-    if poll.room_pic5 !="" and poll.room_pic5 !=None: img_group.append({'img':	str(poll.room_pic5),'act':'item '	})
-    if poll.room_pic6 !="" and poll.room_pic6 !=None: img_group.append({'img':	str(poll.room_pic6),'act':'item '	})
-    if poll.room_pic7 !="" and poll.room_pic7 !=None: img_group.append({'img':	str(poll.room_pic7),'act':'item '	})	
+    if poll.room_pic1 !="" and poll.room_pic1 !=None: img_group.append(str(poll.room_pic1))
+    if poll.room_pic2 !="" and poll.room_pic2 !=None: img_group.append(str(poll.room_pic2))
+    if poll.room_pic3 !="" and poll.room_pic3 !=None: img_group.append(str(poll.room_pic3))	
+    if poll.room_pic4 !="" and poll.room_pic4 !=None: img_group.append(str(poll.room_pic4))
+    if poll.room_pic5 !="" and poll.room_pic5 !=None: img_group.append(str(poll.room_pic5))
+    if poll.room_pic6 !="" and poll.room_pic6 !=None: img_group.append(str(poll.room_pic6))
+    if poll.room_pic7 !="" and poll.room_pic7 !=None: img_group.append(str(poll.room_pic7))	
 	
-    try: img_group[0]
-    except IndexError:
-        no_pic=1;	
-    else: 
-        img_group[0]['act']='item active'	
-	
+    	
     poll_ser.update({'size':str(poll.size),
                      'property_type':str(poll.property_type),
                      'floor_level':str(poll.floor_level),
                      'parking':str(poll.parking),
                      'pet':str(poll.pet),
-                     'smoke':str(poll.smoke),
+                     'smoking':str(poll.smoke),
                      'private_bath':str(poll.private_bath),
                      'washer_dryer':str(poll.washer_dryer),
                      'kitchen_access':str(poll.kitchen_access),
@@ -255,7 +260,15 @@ def event_query(request):
                      'rent_gas':str(poll.rent_gas),
                      'rent_electricity':str(poll.rent_electricity),
                      'rent_garbage':str(poll.rent_garbage),
-                     'rent_parking':str(poll.rent_parking),					 
+                     'rent_parking':str(poll.rent_parking),	
+                     'free_way': 'I880',   
+                     'utilities':'include',
+                     'term': 'Long term',
+                     'over_night_guest': 'Yes',
+                     'funiture':'Not provide',
+                     'about_you': 'Female',
+                     'about_us': 'Nice people',
+                     'connection': connection,
                      'content':str(poll.content)})	
     res ={}
     # poll_ser = dict((k,v) for k,v in poll_ser.iteritems()  if v != 'None' )
@@ -318,7 +331,34 @@ def delete_event(request):
         else:
            return HttpResponse("\"not poster\"", content_type="application/json")  		
     
-	
+def check_fb_mutual_frd(your_id, poster_id):
+    if your_id==poster_id:
+        return {'code':-1}
+    poster_fb_id=get_fb_id(poster_id)
+    if poster_fb_id ==0:
+        return {'code':0, 'msg':'poster doesnt login with FB'}
+    your_friends = FacebookUser.objects.filter(user_id=your_id).values_list('facebook_id', flat=True)	
+    try: your_friends
+    except NameError:
+        return {'code':0, 'msg':'find no your fb friend-NameError'}
+    else:
+        if poster_fb_id in your_friends:
+            return {'code':1}
+        if len(your_friends) == 0:
+            return {'code':0, 'msg':'find no your fb friend-len is 0'}
+    poster_friends=FacebookUser.objects.filter(user_id=poster_id).values_list('facebook_id', flat=True)
+    try: poster_friends
+    except NameError:
+        return {'code':0, 'msg':'poster has no FB friend-NameError'}
+    else:
+        if len(poster_friends) == 0:
+            return {'code':0, 'msg':'poster has no FB friend-len is 0'}
+    mutual_friend= [val for val in your_friends if val in poster_friends]
+    if len(mutual_friend)>0:
+        return {'code':2, 'mutual_friend': mutual_friend}
+    return {'code':0, 'msg':'no mutual_friend', 'your friends':your_friends, 'poster_fb_id': poster_fb_id}
+            
+    
 def search_post(request):	
     if request.user.is_authenticated():
         user_friends = FacebookUser.objects.filter(user_id=request.user.id)		
@@ -351,7 +391,7 @@ def search_post(request):
     poll_ser=[]	      	
     for poll in latest_poll_list:
         poster_fb_id=get_fb_id(poll.user_pk)
-        if poster_fb_id != 'x' and got_friends == 1 and poster_fb_id !=None:
+        if poster_fb_id != 0 and got_friends == 1 and poster_fb_id !=None:
             mutual_result=user_friends.filter(facebook_id=poster_fb_id)
             your_friend=1
             if len(	mutual_result) == 0:
@@ -411,13 +451,13 @@ def get_username(pk):
 def get_fb_id(pk):
     try: person=FacebookProfile.objects.get(user_id=pk)	
     except ObjectDoesNotExist:
-        return 'x'
+        return 0
     return person.facebook_id	
 
 def get_fb_pic(pk):
     try: person=FacebookProfile.objects.get(user_id=pk)	
     except ObjectDoesNotExist:
-        return ''
+        return 'default_profile_pic.jpg'
     return str(person.image)		
 
 def get_fb_url(pk):

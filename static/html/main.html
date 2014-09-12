@@ -1,0 +1,99 @@
+
+
+        <div class="top_image">
+            <img src="/img/whiteRoom3.jpg" class="container-liquid " id="main_top_pic">
+        </div>
+            <div id="slogan">
+                <div class="slogan_text">Rent & Lease Through friends</div>
+            </div>     
+        <div class="main_group_after_pic">
+        <div class="search_block">
+            <div class="search_block_content">
+  <input type="text" class="input-medium search-query" placeholder="ex:95050" data-bind="value:$root.search_zip">
+  <button type="submit" class="btn btn"  data-bind="click:search_result">Search</button>            
+            </div>
+        </div>
+        <div class="main_content">
+            <div class="blcck_container">
+            <div class="block_row">
+                <a href="#/event/{{feature_posts[0].pk}}">
+                    <div class="feature_group feature_group0">
+                        <div class="feature_text feature_text0">
+                            {{feature_posts[0].start_date | date:'yyyy-MM-dd'}}<br>
+                            {{feature_posts[0].zip}}<br>
+                            ${{feature_posts[0].rent}}                       
+                        </div>                
+                        <div ng-style="{'background-image': 'url(media/' + feature_posts[0].room_pic1 + ')'}" class="feature_div feature_div0" >                       
+                        </div>
+                    </div>
+                </a>
+                <a href="#/event/{{feature_posts[1].pk}}">
+                    <div class="feature_group feature_group1">
+                        <div class="feature_text feature_text1">
+                            {{feature_posts[1].start_date | date:'yyyy-MM-dd'}}<br>
+                            {{feature_posts[1].zip}}<br>
+                            ${{feature_posts[1].rent}}                       
+                        </div>                
+                        <div ng-style="{'background-image': 'url(media/' + feature_posts[1].room_pic1 + ')'}" class="feature_div feature_div1" >                       
+                        </div>
+                    </div>
+                </a>
+                <a href="#view_login_div" class="various_login">
+                <div class="blocks block_orange" class="feature_div">
+                    LogIn
+                </div>
+                </a>    
+            </div>
+            <div class="block_row">
+                <a href="#/event/{{feature_posts[2].pk}}">
+                    <div class="feature_group feature_group2">
+                        <div class="feature_text feature_text2">
+                            {{feature_posts[2].start_date | date:'yyyy-MM-dd'}}<br>
+                            {{feature_posts[2].zip}}<br>
+                            ${{feature_posts[2].rent}}                       
+                        </div>                
+                        <div ng-style="{'background-image': 'url(media/' + feature_posts[2].room_pic1 + ')'}" class="feature_div feature_div2" >                       
+                        </div>
+                    </div>
+                </a>
+                <div class="blocks block_yellow">
+                    NestQ
+                </div>
+                <a href="#/event/{{feature_posts[3].pk}}">
+                    <div class="feature_group feature_group3">
+                        <div class="feature_text feature_text3">
+                            {{feature_posts[3].start_date | date:'yyyy-MM-dd'}}<br>
+                            {{feature_posts[3].zip}}<br>
+                            ${{feature_posts[3].rent}}                       
+                        </div>                
+                        <div ng-style="{'background-image': 'url(media/' + feature_posts[3].room_pic1 + ')'}" class="feature_div feature_div3" >                       
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="block_row">
+                <div class="blocks block_orange">
+                    Meet the team
+                </div>
+                <a href="#/event/{{feature_posts[4].pk}}">
+                    <div class="feature_group feature_group4">
+                        <div class="feature_text feature_text4">
+                            {{feature_posts[4].start_date | date:'yyyy-MM-dd'}}<br>
+                            {{feature_posts[4].zip}}<br>
+                            ${{feature_posts[4].rent}}                       
+                        </div>                
+                        <div ng-style="{'background-image': 'url(media/' + feature_posts[4].room_pic1 + ')'}" class="feature_div feature_div4" >                       
+                        </div>
+                    </div>
+                </a> 
+                <div class="blocks block_grey" data-bind="click:$root.post_event">
+                    POST
+                </div>            
+            </div>            
+            </div>
+        </div>
+        <div class="main_bottom">
+            aa
+        </div>
+        </div>
+  

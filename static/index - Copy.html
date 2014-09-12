@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8" /> 
+    <script type="text/javascript" src="js/less-1.4.1.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/facebook.css" type="text/css" rel="stylesheet" media="all" />
+
+
+    <title>Renmo</title>
+</head>
+<style>
+/* Large desktop */
+@media (min-width: 980px) { 
+    .small_card_img {
+      width:  inherit;
+      height: 280px;
+    }         
+    #index_search   {
+       width: 600px;
+        top:360px;
+        margin-left: 11%;
+    } 
+    .event_card{
+/*        width:500px;*/
+    }
+    .flag{width: 40%;}
+    
+    .search_filter{
+        position: fixed;
+    }
+    .event_column{
+        margin-left: 23%;
+    }
+    .big_card_poster{
+        position: absolute;
+        top: 479px;
+    }
+    .big_card_info{
+        position: absolute;
+    }
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    #index_search   {
+       width: 400px;
+        top:360px;
+        margin-left: 11%;
+    } 
+    input[type="range"] {
+        width: auto;
+    }    
+    .search_filter{
+        position: fixed;
+    }    
+    .event_column{
+        margin-left: 22%;
+    }    
+    .big_card_poster{
+        position: absolute;
+        top: 250px;
+    }
+    .big_card_info{
+        position: absolute;
+    }    
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (min-width: 481px) and (max-width: 767px) { 
+        #index_search   {
+       width: 400px;
+        top:360px;
+    } 
+input[type="range"] {
+    width: inherit;
+}    
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+        #index_search   {
+       width: 86%;
+        top:360px;
+    }     
+    input[type="range"] {
+        width: inherit;
+    }    
+    ul, ol {
+    padding: 0;
+    margin: 0 0 0px 0px;
+    }
+    #myCarousel > ol > img{
+        width: 20px;
+        border: 1px;
+    }
+}    
+body{background-color:#fff;}
+img { 
+  max-width: 100%;
+}    
+#app > div{
+    float: none;
+    margin: 0 auto;}    
+
+p
+{background-color:#e0ffff;}
+
+.flag{
+   color: white; 
+
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}
+.big_card{
+    position: relative;
+}
+.big_card_info{
+    font-size: large;
+   color: white;
+/*    position: absolute;*/
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 15px; 
+    top: 83px;
+    left: -1%;
+}
+.big_card_poster{
+    font-size: large;
+   color: white;
+/*    position: absolute;*/
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 15px; 
+
+    right: -1%;
+}
+
+.event_card
+    {border:1px solid gray;
+        position: relative;
+        margin-bottom: 20px;
+        height: 55px;
+    }
+#view_search{
+background-image:url('/background.jpg');
+}
+.b_blcok{
+    border: 1px  solid black;
+    width:100px;
+    height:100px;
+    color:#ac0000;
+
+}
+
+.image {
+/*    position:relative;*/
+    float:left; /* optional */
+    z-index:-1;
+}
+#event_sidebar{
+   top:20px
+}
+.image .text {
+    position:absolute;
+    top:100px; /* in conjunction with left property, decides the text position */
+    right:10px;
+/*    margin-right: auto;*/
+    color: white;
+    background-color: none;
+}
+
+#index_search{
+    position:absolute;  
+    
+/*    right:50%;    */
+/*    width:500px;*/
+    height:100px;
+    background-color: rgba(255, 255, 255, 0);
+}
+    
+#index_search .tab-content  
+{
+        position:absolute;  
+        top: 24%;
+        left: 0%;
+        width:100%;
+        height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    border:1px solid #bababa;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    overflow:hidden;
+}
+    
+#index_search .tab-content >div 
+{
+        height: 100%;
+    z-index: -1
+
+}    
+
+#index_search li  
+{
+background-color: rgba(255, 255, 255, 0);
+    
+}    
+.nav-tabs > li > a:hover {
+    background-color: : #9f9c9c;
+    color: #de2929;
+}
+
+.nav-tabs > li > a {
+  background-color: rgba(255, 245, 0, 0.88);
+}        
+    
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+  border-color: #00ff31 #e60505 #dddddd;
+}    
+    
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+  color: #555555;
+  cursor: default;
+  background-color: #ffffff;
+  border: 1px solid #a7a7a7;
+  border-bottom-color: transparent;
+  z-index: 2;
+}    
+.tab-pane{
+    padding: 10px;
+}
+#find_room > div{
+/*    position:absolute;  */
+    left: 5%;
+    top: 2%;    
+}
+#find_room > div > form {
+
+    
+}    
+body > div.navi_menu{
+    float: right;
+}
+.post_error_msg{
+    color: red;
+}    
+    
+.poster-info{
+   float: right;
+    
+}
+.slide_ind{
+    width: 50px;
+    -webkit-filter: grayscale(1);
+    border:4px solid gray;
+}
+#myCarousel > ol > img.slide_ind.active{
+    -webkit-filter: grayscale(0);
+    border:4px solid red;
+}    
+  #container_card {
+    display: table;
+      
+    }
+
+  #row  {
+position: absolute;
+ bottom: 0px; 
+height: 80px;
+width: inherit;
+    }
+
+#card_poster{
+    background: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    width: initial;
+}
+#card_info{}
+    
+   #right, #middle {
+
+    }    
+.fb-img {
+  width:  auto;
+  height: 40px;
+}    
+  
+
+#myCarousel{
+    width: 100%;
+} 
+    
+.detail_header{
+    color:grey;
+    margin: auto;
+    font-weight:bold;
+}
+.Yes{
+    color:green;
+}
+.No{
+    color:red;
+}
+.high_light_detail{
+    color:#ac0000;
+    font-weight:bold;
+    font-size:140%
+}
+.search_filter{
+    border-color: black;
+    background-color: #c9c9c9;
+}
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: #fff;
+    width: 90%;
+    height: 14px;
+/*    border: 1px solid black;*/
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: rgba(0, 0, 0, 0.74);
+    opacity: 0.5;
+    width: 20px;
+    height: 26px;
+}
+</style>
+
+<body>
+ 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=490262681101649&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    
+<div class="row navi_menu main_header">
+    <a href="index.html#main"><img src="img/logo.png" class="logo"></a>
+  <div class="head_text">
+                <div class="headlinks" data-bind="with:$root.user">
+                    <section data-bind="visible:!user_id()" class="header_text">                        
+                        <a href="#view_login_div" style="color: white;"  class="various_login">Login</a>
+                    </section>
+                    <section data-bind="visible:!!user_id()" class="header_text">
+                        <div id="notice_index">
+                        <div data-bind="text:user_unread_notice_number, click:$root.notice" style="color: white; float: left;"></div>
+                        </div>
+                        <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                            <div data-bind="text:username"  style="color: white;"></div>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="click:doLogout">Logout</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Account setting</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Help</a></li>
+                        </ul>
+             
+                    </section>                    
+                </div>      
+
+  </div>
+</div>    
+    <div style="display:none">
+        <div id="view_login_div" >
+            <div id="login_top_div">
+            <img src="img/logo.png" id="login_logo" >
+        <h4 id="login_title">
+            Login with you favorite social platform and explore the network:
+        </h4>
+            </div>
+            <div id="login_dot_line"></div>
+            <div id="login_main_text">
+                With social media login, we can help you to find out how many of your friends have post on RenMO. Also find out your connections with different poster. Find a relible connection to get a perfect home!
+            
+            </div>
+            <div id="login_fb_title">
+                Log in to Facebook to create your RenMo account.
+            </div>
+        <form action="/facebook/connect/?facebook_login=1" method="post" id="facebook_login_form">
+            <input type="hidden" value="" name="next">
+            <input type="hidden" value="" name="register_next">
+            <input type="hidden" value="" name="error_next">
+            <input onclick="F.connect(this.parentNode); return false;" type="image" src="django_facebook/images/facebook_login.png">
+            <font size=3>or</font>
+
+        </form>            
+        <div data-bind="with:user" id="email_login">               
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+            </ul>
+            <div class="forget">
+                Forget Password
+            </div>
+         
+            <div class="btn btn_black" data-bind="click:doLogin">
+                Log In
+            </div>
+                        <div class="btn btn_black" data-bind="click:go2Create">
+                Sign up
+            </div>     
+      
+        </div>
+        </div>
+    </div>
+
+    <!-- AppView -->
+    <section id="app" data-bind="with: VM">
+        <div class="view" data-bind="css: name">
+            <div class="headlinks" data-bind="with:$parent.user">
+                <section data-bind="visible:!user_id()">
+                    <a class="share"></a>
+                    <a class="user" data-bind="click:go2login"></a>
+                </section>
+                <section data-bind="visible:!!user_id()">
+                    <a class="notify"></a>
+                    <a class="share"></a>
+                    <a class="user" data-bind="click:doLogout"></a>
+                </section>
+            </div>
+            <div class="body" data-bind="template: { name: body, afterRender: init }"></div>
+        </div>
+    </section>
+    <br>
+<!--    
+<div class="fb-like" data-href="http://rentlisting-snowleo.rhcloud.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>    -->
+    <!-- views -->
+    <script type="text/html" id="view_main" >
+        <div class="top_image">
+            <img src="/img/whiteRoom3.jpg" class="container-liquid " id="main_top_pic">
+        </div>
+            <div id="slogan">
+                <div class="slogan_text">Rent & Lease Through friends</div>
+            </div>     
+        <div class="main_group_after_pic">
+        <div class="search_block">
+            <div class="search_block_content">
+  <input type="text" class="input-medium search-query" placeholder="ex:95050" data-bind="value:$root.search_zip">
+  <button type="submit" class="btn btn"  data-bind="click:search_result">Search</button>            
+            </div>
+        </div>
+        <div class="main_content">
+            <div class="blcck_container">
+            <div class="block_row">
+                <div class="feature_group feature_group0" data-bind="with:$root.feature_posts_0" href="#">
+                    <div class="feature_text feature_text0" data-bind="click:$root.click_poll">
+                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
+                        <span data-bind="text:zip"></span><br>
+                        $<span data-bind="text:rent"></span>                        
+                    </div>                
+                    <div data-bind="style: { 'backgroundImage': 'url(media/'+room_pic1+')'}, click:$root.click_poll" class="feature_div feature_div0" >                       
+                    </div>
+                </div>
+                <div class="feature_group feature_group1" data-bind="with:$root.feature_posts_1">
+                    <div class="feature_text feature_text1" data-bind="click:$root.click_poll">
+                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
+                        <span data-bind="text:zip"></span><br>
+                        $<span data-bind="text:rent"></span>                        
+                    </div>                 
+                    <div data-bind="style: { 'backgroundImage': 'url(media/'+room_pic1+')'}, click:$root.click_poll" class="feature_div feature_div1">
+                    </div>
+                </div>
+                <a href="#view_login_div" class="various_login">
+                <div class="blocks block_orange" class="feature_div">
+                    LogIn
+                </div>
+                </a>    
+            </div>
+            <div class="block_row">
+                <div class="feature_group feature_group2" data-bind="with:$root.feature_posts_2">
+                    <div class="feature_text feature_text2" data-bind="click:$root.click_poll">
+                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
+                        <span data-bind="text:zip"></span><br>
+                        $<span data-bind="text:rent"></span>                        
+                    </div>                      
+                    <div data-bind="style: { 'backgroundImage': 'url(media/'+room_pic1+')'}, click:$root.click_poll" class="feature_div feature_div2">
+                    </div>
+                </div>
+                <div class="blocks block_yellow">
+                    NestQ
+                </div>
+                <div class="feature_group feature_group3" data-bind="with:$root.feature_posts_3">
+                    <div class="feature_text feature_text3" data-bind="click:$root.click_poll">
+                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
+                        <span data-bind="text:zip"></span><br>
+                        $<span data-bind="text:rent"></span>                        
+                    </div>                      
+                    <div data-bind="style: { 'backgroundImage': 'url(media/'+room_pic1+')'}, click:$root.click_poll" class="feature_div feature_div3">
+                    </div>        
+                </div>
+            </div>
+            <div class="block_row">
+                <div class="blocks block_orange">
+                    Meet the team
+                </div>
+                <div class="feature_group feature_group4" data-bind="with:$root.feature_posts_4">
+                    <div class="feature_text feature_text4" data-bind="click:$root.click_poll">
+                        <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span><br>
+                        <span data-bind="text:zip"></span><br>
+                        $<span data-bind="text:rent"></span>                        
+                    </div>      
+                    <div data-bind="style:{'backgroundImage': 'url(media/'+room_pic1+')'}, click:$root.click_poll" class="feature_div feature_div4">
+                    </div>
+                </div>    
+                <div class="blocks block_grey" data-bind="click:$root.post_event">
+                    POST
+                </div>            
+            </div>            
+            </div>
+        </div>
+        <div class="main_bottom">
+            aa
+        </div>
+        </div>
+
+    </script>    
+    <script type="text/html" id="view_login" >
+        <div id="view_login_div">
+        <h2 class="siteTitle">
+            Login:
+        </h2>
+            
+        <div data-bind="with:user">
+            <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>   
+            <div class="btn btn_black" data-bind="click:go2Create">
+                or Sign up
+            </div>                     
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+            </ul>
+            <div class="forget">
+                Forget Password
+            </div>
+         
+            <div class="btn btn_black" data-bind="click:doLogin">
+                Log In
+            </div>
+            
+      
+        </div>
+        </div>
+    </script>
+    <script type="text/html" id="view_create_account">
+        <h2 class="siteTitle">
+            Rental Listing
+        </h2>
+        <div data-bind="with:user">
+            <div class="btn btn_black" data-bind="click:$root.login">
+                Back
+            </div>               
+            <ul class="form">
+                <li>
+                    <input type="text" data-bind="value:username" placeholder="Email..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password" placeholder="Password..." />
+                </li>
+                <li>
+                    <input type="password" data-bind="value:password2" placeholder="Plz repeat Password..." />
+                </li>
+            
+            </ul>
+            <strong data-bind="text: error_msg"></strong>
+            <div class="btn btn_black" data-bind="click:doCreate">
+                Submit
+            </div>
+        </div>
+    </script>    
+    <script type="text/html" id="view_notice_page">
+        <div data-bind="with:user">
+        <h2 class="siteTitle">
+            Notice for <span data-bind="text:username"></span>
+        </h2>
+        <table data-bind="foreach:notices"  class="table table-hover">
+            <div class="comment">
+               <tr data-bind="click:$parent.click_conversation">
+                   <td data-bind="if:un_read_notice=='1'">Unread</td> <td> 
+                   <td class="comment_item">
+                        <div data-bind="text:notice_giver">
+                        </div>
+                        <div data-bind="visible:giver_pic">
+                            <img data-bind="attr: { src: 'media/'+giver_pic } " class="fb-img">
+                            <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                        </div>
+                   </td>
+                   <td class="comment_item" data-bind="text:notice_type"></td>
+                   <td class="comment_item" ><a href="#" data-bind="click:$parent.click_event"><span data-bind="text:post_id"></span></a></td>
+                   <td class="comment_item"><div data-bind="text:$.format.date(date,'MMM. dd. yyyy')"></div><div data-bind="text:time"></div></td> </td>
+                </tr>
+            </div>
+
+        </table>
+            <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>               
+        </div>
+    </script>
+    <script type="text/html" id="view_conversation_page">
+        
+        <h2 class="siteTitle">
+            Conversation with <span data-bind="text:asker_id"></span>
+        </h2>
+        <table data-bind="foreach:conversations"  class="table table-hover">
+            <div class="comment">
+               <tr><td data-bind="if:host!='False'">host</td> <td> <td class="comment_item" data-bind="text:comment_text"></td><td class="comment_item" data-bind="text:commenter_id"></td><td class="comment_item" ></td><td class="comment_item" data-bind="text:$.format.date(pub_date,'MMM. d. yyyy. hh .mmm')"></td> </td></tr>
+            </div>
+        
+        </table>
+        <input class="" type="text" data-bind="value:reply_conversation" /> <a href="#" data-bind="click:send_reply_conversation">Reply</a><br>
+            <div class="btn btn_black" data-bind="click:$root.back">
+                Back
+            </div>               
+
+    </script>
+    <script type="text/html" id="view_search">   
+
+    <div class="fb-facepile" data-app-id="490262681101649"  data-max-rows="1" data-colorscheme="light" data-size="large" data-show-count="true"></div> 
+        <div class="title_graph">
+            <h2 class="siteTitle">
+                Search Result <h2 data-bind="if:$root.search_zip">for "<span data-bind="text:$root.search_zip"></span>"</h2>:   
+            </h2>      
+           <div class="row-fluid">
+        <div class="search_filter span2 ">
+ADJUST:<br>
+Rent Range: $<span data-bind="text:rent_min"></span>-$<span data-bind="text:rent_max"></span><br>Max:<input data-bind="value: rent_max, valueUpdate: 'input', attr:{min:range_min,max:range_max}" type="range"/><br>
+<!--<div style="margin: 10px" data-bind="slider: rent_max, sliderOptions: {min: 0, max: 100, range: 'min', step: 1}"></div>-->
+
+min:<input data-bind="value: rent_min, valueUpdate: 'input', attr:{min:range_min,max:range_max}" type="range"/><br>
+<!--<div style="margin: 10px" data-bind="slider: rent_min, sliderOptions: {min: 0, max: 100, range: 'min', step: 1}"></div>-->
+Bed:<span data-bind="text:sel_bed_num"></span><br>
+            <input data-bind="value: sel_bed_num, valueUpdate: 'input', attr:{min:0,max:bed_range_max}" type="range"/><br>
+Bath:<span data-bind="text:sel_bath_num"></span><br>
+            <input data-bind="value: sel_bath_num, valueUpdate: 'input', attr:{min:0,max:bath_range_max}" type="range"/><br>            
+            <div class="btn btn_black" data-bind="click:reset_filter">
+                Reset
+            </div>              
+        </div>
+        <div class="event_column">
+            <ul class="event_list" data-bind="template:{name:'tmpl_event',foreach:polls_filter}"></ul>
+            <div data-bind="if:loading">Loading...</div>
+<!--            <div data-bind="if:polls_filter.length==0">Found no result</div>-->
+            <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>  
+        </div>
+        </div>
+         <br>
+ 
+    </script>
+    <script type="text/html" id="view_slide">
+
+   </div>   
+        </script>
+    
+    <script type="text/html" id="view_event">
+<div class="">     
+    <div class="row-fluid">
+        <div class="span2 bs-docs-sidebar" id="event_sidebar">
+ <ul class="nav nav-list bs-docs-sidenav affix navbar  " hidden>
+  <li class="nav-header">List Detail</li>
+  <li class="active"><a data-bind="#big_pic">Overview</a></li>
+  <li><a href="#event_detail">Detail</a></li>   
+  <li><a href="#map">Location MAP</a></li>
+  <li><a href="#comment">Comments</a></li>
+
+</ul>
+</div>
+        <div class="">
+        <div class="tabs">
+                
+            <section class="big_pic" data-bind="with:poll" id="big_pic">
+                <div data-bind="visible:$parent.loading">Loading...</div>
+            <div class="big_card">
+           <div id="myCarousel" class="carousel slide"  >
+          <ol class="carousel-indicators" data-bind="foreach:imgs">
+            <li data-target="#carousel-example-generic" data-bind="attr:{
+                                                      'data-slide-to':$index, 
+                                                      class: $index() === 0 ?'slide_ind active' : 'slide_ind'}"></li>
+
+        
+          </ol>
+          <!-- Carousel items -->
+          <div class="carousel-inner" data-bind="foreach:imgs">
+              <div class="item" data-bind="attr:{class:act} "><img data-bind="attr: { src: 'media/'+img } " id="big_card_pic" ></div>
+        
+          </div>
+          <div class="carousel-inner" data-bind="if:imgs.length==0" >  
+              <div class="item active "><img src="/img/big_card_pic.jpg" ></div>
+          </div>
+          <!-- Carousel nav -->
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev"  data-bind="visible:imgs.length>1">&lsaquo;</a>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next"  data-bind="visible:imgs.length>1">&rsaquo;</a>
+        </div>
+              
+                </div>
+<div class="fb-like" data-bind="attr: { data-href:'http://rentlisting-snowleo.rhcloud.com/index.html#event/'+event_id()" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>            
+            </section>
+            <div class="top_space_for_pic"></div>
+            <div id="big_card_bar"  data-bind="with:poll">
+                <div class="big_card_bar_content">
+                    <span class="bed" data-bind="text:num_bed"></span> bedroom condor for rent,
+                    <span class="bath" data-bind="text:city"></span>,
+                    $<span class="bath" data-bind="text:rent"></span>
+                </div>
+            </div>
+            <div class="big_card_main_content" data-bind="with:poll">
+            How you are connected:
+                <div id="big_card_connection">
+                    <div data-bind="with:$root.user" id="connection_user">
+                        <div data-bind="style: { 'backgroundImage': 'url(media/'+profile_pic()+')'}" class="big_card_poster_profile_pic" >         
+                            <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                        </div>
+                        <span data-bind="text:username"></span>
+                    </div>
+                    <div id="connection_status">
+                        <span data-bind="text:connection"></span>
+                        <div data-bind="visible:connection.code==-1">lalala</div>
+                    </div>
+                    <div id="connection_poster">
+                        <div data-bind="style: { 'backgroundImage': 'url(media/'+poster_fb_pic+')'}" class="big_card_poster_profile_pic" >     
+                            <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                        </div>
+                    </div>
+                
+                </div>
+                <div id="bgi_card_poster_content">
+                    <div id="big_card_poster_pic">
+                        <div data-bind="visible:poster_fb_pic">
+                            <div data-bind="style: { 'backgroundImage': 'url(media/'+poster_fb_pic+')'}" class="big_card_poster_profile_pic" >     
+                                <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                            </div>
+                        </div>
+                        <span data-bind="text:user_field"></span>                    
+                    </div>
+                    <div id="big_card_content">
+                        <div  class="big_card_content_text">
+                            <span data-bind="text:content"></span>
+                        </div>
+                    </div>
+                    <div id="contact_poster_buttoms_div">
+                        <div class="big_card_contact_buttoms" style=" background-color: #bd2c00 ;color: white;">Rquest to contract</div>
+                        <div class="big_card_contact_buttoms">Contact <span data-bind="text:user_field"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="big_card_event_detail" data-bind="with:poll">
+             <div class="row-fluid high_light_detail">
+                 <div class="span3" data-bind="if:pet!='None'">
+                     >Allow Pet:<span data-bind="text:pet"></span>
+                 </div>
+                 <div class="span3" data-bind="if:smoking!='None'">
+                     >Allow smoking:<span data-bind="text:smoking"></span>
+                 </div>
+                 <div class="span3" data-bind="if:washer_dryer!='None'">
+                     >Washer dryer:<span data-bind="text:washer_dryer"></span>
+                 </div>
+                 <div class="span3" data-bind="if:parking!='None'">
+                     >Parking:<span data-bind="text:parking"></span>
+                 </div>                 
+             </div>
+        <div class="row-fluid">
+            <div class="big_card_detail_column">
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The Property</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        city:<br>
+                        Free way:<br>
+                        Properity type:<br>
+                        size:<br>
+                        Bed/ Bath:<br>                        
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        <span data-bind="text:city"></span><br>
+                        <span data-bind="text:free_way"></span><br>
+                        <span data-bind="text:property_type"></span><br>
+                        <span data-bind="text:size"></span><br>
+                        <span data-bind="text:num_bed"></span>B <span data-bind="text:num_bath"></span>b<br>                        
+                    </div>                    
+                </div>
+                <div class="big_card_line"></div>
+                
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The Lease</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        Rent:<br>
+                        Utilities:<br>
+                        Term:<br>
+                        Kitchen Access:<br>
+                        Parking:<br>
+                        Smoking:<br>
+                        Overnight Guest:<br>
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        $<span data-bind="text:rent"></span><br>
+                        <span data-bind="text:utilities"></span><br>
+                        <span data-bind="text:term"></span><br>
+                        <span data-bind="text:kitchen_access"></span><br>
+                        <span data-bind="text:parking"></span><br>
+                        <span data-bind="text:smoking"></span><br>
+                        <span data-bind="text:over_night_guest"></span><br>
+                    </div>                    
+
+                </div>
+                <div class="big_card_line"></div>     
+                
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The Amenity</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        Washer & Dryer:<br>
+                        Funiture:<br>
+                        Swimming Pool:<br>
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        <span data-bind="text:washer_dryer"></span><br>
+                        <span data-bind="text:funiture"></span><br>
+                        <span data-bind="text:swim_pool"></span><br>
+                    </div>                    
+                </div>
+                <div class="big_card_line"></div> 
+
+                <div class="big_card_header_space"></div>
+                <span class="big_card_detail_header">The People</span>
+                <div class="big_card_detail_item">
+                    <div class="big_card_detai_index big_card_text">
+                        About You:<br>
+                        About Us:<br>
+                    </div>
+                    <div class="big_card_detai_properity big_card_text">
+                        <span data-bind="text:about_you"></span><br>
+                        <span data-bind="text:about_us"></span><br>
+                    </div>                    
+                </div>
+               
+    
+            </div>     
+            <div id="big_card_comment_div">
+                Review:
+                <div data-bind="foreach:$parent.comments"  class="big_card_comment_row">
+                    <div class="big_card_comment">
+                        <div class="big_card_commeter_pic">
+                            <div data-bind="visible:commenter_pic">
+                                <div data-bind="style: { 'backgroundImage': 'url(media/'+commenter_pic+')'}" class="big_card_poster_profile_pic" >     
+                                    <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+                                </div>
+                            </div>
+                            <span data-bind="text:commenter"></span>                    
+                        </div>
+                        
+                        <div class="big_card_comment_text">
+                            <div  class="big_card_content_text">
+                                <span data-bind="text:comment_text"></span>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+        
+                </div>                
+            </div>
+            
+        </div>
+            </div>
+
+            <section id="comment">
+        </div>
+
+
+        <br />
+            <table class="table table-hover">
+                <tr>
+                    <td>COMMENTS:</td>
+                </tr>
+            </table>
+            
+        
+
+      
+        <div data-bind="if:showComment()">
+            <ul class="form">
+                <li>
+                    <label>Comment:</label>
+                    <textarea data-bind="value:textarea_comment"></textarea>  <a href="#" data-bind="click:leaveComment">COMMENT</a>
+                </li>
+            </ul>
+           
+        </div>
+            <input class="" type="text" data-bind="value:ask_q_context" /> <a href="#" data-bind="click:ask_poster_question">ASK Q</a>
+            </section>
+        <br />
+        <div data-bind="if:showEdit()">
+            <a data-bind="click:edit">EDIT</a>
+            <form data-bind="attr: { action: up_load_domain }" enctype="multipart/form-data" method="post">
+            
+                <input type=hidden data-bind="attr: { value: event_id }" name="event_id" />
+            <section class="info" data-bind="with:poll">    
+            1.<input type="file" name="image1"/><span data-bind="visible: room_pic1!=''"><i class="icon-upload"></i>uploaded</span><br>
+            2.<input type="file" name="image2"/><span data-bind="visible: room_pic2!=''"><i class="icon-upload"></i>uploaded</span><br>
+            3.<input type="file" name="image3"/><span data-bind="visible: room_pic3!=''"><i class="icon-upload"></i>uploaded</span><br>
+            4.<input type="file" name="image4"/><span data-bind="visible: room_pic4!=''"><i class="icon-upload"></i>uploaded</span><br>
+            5.<input type="file" name="image5"/><span data-bind="visible: room_pic5!=''"><i class="icon-upload"></i>uploaded</span><br>
+            6.<input type="file" name="image6"/><span data-bind="visible: room_pic6!=''"><i class="icon-upload"></i>uploaded</span><br>    
+            7.<input type="file" name="image7"/><span data-bind="visible: room_pic7!=''"><i class="icon-upload"></i>uploaded</span>  
+            </section><br>
+            <input type="submit" value="submit" >    
+            </form>            
+            <a href="#" data-bind="click:remove">REMOVE</a>
+        </div>
+        
+                    <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>  
+            </div>
+        </div>
+        </div>
+    </script>
+    <script type="text/html" id="view_post">
+        <h2 class="siteTitle">
+        POST Rental:
+            </h2>
+        <ul class="form">
+        
+            <div class="input-prepend">
+                <span class="add-on">Start Time</span>
+                <input class="date departure" type="text" data-bind="value:departure_time" /> 
+            </div><span class="post_error_msg" data-bind="text: departure_time_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">End Time</span>
+                <input class="date return" type="text" data-bind="value:return_time" />
+            </div><span class="post_error_msg" data-bind="text: return_time_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on"># of Bed</span>
+                <input type="text" data-bind="value:num_bed" />
+            </div><span class="post_error_msg" data-bind="text: num_bed_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on"># of bath</span>
+                <input type="text" data-bind="value:num_bath" />
+            </div><span class="post_error_msg" data-bind="text: num_bath_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">Address</span>
+                <input type="text" data-bind="value:address" />
+            </div><span class="post_error_msg" data-bind="text: address_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">City</span>
+                <input type="text" data-bind="value:city" />
+            </div><span class="post_error_msg" data-bind="text: city_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">State</span>
+                <input type="text" data-bind="value:state" />
+            </div><span class="post_error_msg" data-bind="text: state_check"></span>
+            <br><div class="input-prepend">
+                <span class="add-on">Zip</span>
+                <input type="number" data-bind="value:zip" />
+            </div><span class="post_error_msg" data-bind="text: zip_check"></span>
+            <br><div class="input-prepend input-append">
+                <span class="add-on">Rent </span>
+                <input class="span2"  data-bind="value:rent" type="number">
+                <span class="add-on">.00</span>
+            </div><span class="post_error_msg" data-bind="text: rent_check"></span>
+            <br><div class="input-prepend">
+                <label>Content</label>
+                <textarea data-bind="value:content" rows="3"></textarea>
+                </div><br><span class="post_error_msg" data-bind="text: content_check"></span>
+            </li>
+            
+        -----optional------
+        <div class="row-fluid">
+            <div class="span4">
+                <span class="detail_header">Property</span>
+                <table>
+    <tr> <td>size                  </td><td colspan=2><input type="number" name="size" data-bind="value:size"></td></tr> 
+    <tr> <td>property_type         </td><td colspan=2><select data-bind="options: property_type"></select></td></tr> 
+    <tr> <td>floor_level           </td><td colspan=2><input type="number" name="floor_level" data-bind="value:floor_level"></td></tr> 
+    <tr> <td>parking               </td><td colspan=2><select data-bind="options: parking"></select></td></tr> 
+    <tr> <td>pet                   </td><td colspan=2><select data-bind="options: pet"></select></td></tr>
+    <tr> <td>smoking                 </td><td>Yes <input type="radio" name="smoking           " value="1" data-bind="checked:smoking           "></td><td> No <input type="radio" name="smoking           " value="0" data-bind="checked:smoking           "></td></tr>
+    <tr> <td>private_bath          </td><td>Yes <input type="radio" name="private_bath    " value="1" data-bind="checked:private_bath    "></td><td> No <input type="radio" name="private_bath    " value="0" data-bind="checked:private_bath    "></td></tr>
+    <tr> <td>washer_dryer          </td><td colspan=2><select data-bind="options: washer_dryer"></select></td></tr>
+    <tr> <td>kitchen_access        </td><td>Yes <input type="radio" name="kitchen_access  " value="1" data-bind="checked:kitchen_access  "></td><td> No <input type="radio" name="kitchen_access  " value="0" data-bind="checked:kitchen_access  "></td></tr>
+    <tr> <td>internet              </td><td>Yes <input type="radio" name="internet        " value="1" data-bind="checked:internet        "></td><td> No <input type="radio" name="internet        " value="0" data-bind="checked:internet        "></td></tr>
+    <tr> <td>cable_tv              </td><td>Yes <input type="radio" name="cable_tv        " value="1" data-bind="checked:cable_tv        "></td><td> No <input type="radio" name="cable_tv        " value="0" data-bind="checked:cable_tv        "></td></tr>
+</table>
+    
+            </div>
+            <div class="span4">
+                <span class="detail_header">Community Features</span>
+                <table>
+    <tr> <td>park                  </td><td>Yes <input type="radio" name="park            " value="1" data-bind="checked:park            "></td><td> No <input type="radio" name="park            " value="0" data-bind="checked:park            "></td></tr>
+    <tr> <td>play_ground           </td><td>Yes <input type="radio" name="play_ground     " value="1" data-bind="checked:play_ground     "></td><td> No <input type="radio" name="play_ground     " value="0" data-bind="checked:play_ground     "></td></tr>
+    <tr> <td>tennis                </td><td>Yes <input type="radio" name="tennis          " value="1" data-bind="checked:tennis          "></td><td> No <input type="radio" name="tennis          " value="0" data-bind="checked:tennis          "></td></tr>
+    <tr> <td>basketball            </td><td>Yes <input type="radio" name="basketball      " value="1" data-bind="checked:basketball      "></td><td> No <input type="radio" name="basketball      " value="0" data-bind="checked:basketball      "></td></tr>
+    <tr> <td>swim_pool             </td><td>Yes <input type="radio" name="swim_pool       " value="1" data-bind="checked:swim_pool       "></td><td> No <input type="radio" name="swim_pool       " value="0" data-bind="checked:swim_pool       "></td></tr>
+    <tr> <td>jacuzzi               </td><td>Yes <input type="radio" name="jacuzzi         " value="1" data-bind="checked:jacuzzi         "></td><td> No <input type="radio" name="jacuzzi         " value="0" data-bind="checked:jacuzzi         "></td></tr>
+    <tr> <td>gym                   </td><td>Yes <input type="radio" name="gym             " value="1" data-bind="checked:gym             "></td><td> No <input type="radio" name="gym             " value="0" data-bind="checked:gym             "></td></tr>
+    <tr> <td>bbq_area              </td><td>Yes <input type="radio" name="bbq_area        " value="1" data-bind="checked:bbq_area        "></td><td> No <input type="radio" name="bbq_area        " value="0" data-bind="checked:bbq_area        "></td></tr>
+                    
+</table>
+    
+            </div>
+            <div class="span4">
+                <span class="detail_header">Rent-included item</span>
+                <table>
+    <tr> <td>rent_internet         </td><td>Yes <input type="radio" name="rent_internet   " value="1" data-bind="checked:rent_internet   "></td><td> No <input type="radio" name="rent_internet   " value="0" data-bind="checked:rent_internet   "></td></tr>
+    <tr> <td>rent_cable_tv         </td><td>Yes <input type="radio" name="rent_cable_tv   " value="1" data-bind="checked:rent_cable_tv   "></td><td> No <input type="radio" name="rent_cable_tv   " value="0" data-bind="checked:rent_cable_tv   "></td></tr>
+    <tr> <td>rent_water            </td><td>Yes <input type="radio" name="rent_water      " value="1" data-bind="checked:rent_water      "></td><td> No <input type="radio" name="rent_water      " value="0" data-bind="checked:rent_water      "></td></tr>
+    <tr> <td>rent_gas              </td><td>Yes <input type="radio" name="rent_gas        " value="1" data-bind="checked:rent_gas        "></td><td> No <input type="radio" name="rent_gas        " value="0" data-bind="checked:rent_gas        "></td></tr>
+    <tr> <td>rent_electricity      </td><td>Yes <input type="radio" name="rent_electricity" value="1" data-bind="checked:rent_electricity"></td><td> No <input type="radio" name="rent_electricity" value="0" data-bind="checked:rent_electricity"></td></tr>
+    <tr> <td>rent_garbage          </td><td>Yes <input type="radio" name="rent_garbage    " value="1" data-bind="checked:rent_garbage    "></td><td> No <input type="radio" name="rent_garbage    " value="0" data-bind="checked:rent_garbage    "></td></tr>
+    <tr> <td>rent_parking          </td><td>Yes <input type="radio" name="rent_parking    " value="1" data-bind="checked:rent_parking    "></td><td> No <input type="radio" name="rent_parking    " value="0" data-bind="checked:rent_parking    "></td></tr>
+                    
+</table>
+    
+            </div>     
+        </div>
+        </ul>
+        <a data-bind="click:post" class="btn btn-primary" href="#">POST</a>
+        <a href="#" data-bind="click:back" class="btn">BACK</a>
+    </script>
+    <!-- comp -->
+    <script type="text/html" id="tmpl_event">
+        <div class="event_card" data-bind="click:$parent.click" id="container_card">
+            <div class="row-fluid">
+                <div data-bind="visible: room_pic1!=''">
+                    <img data-bind="attr: { src: 'media/'+room_pic1 }" class="small_card_img">
+                </div>        
+                <div data-bind="visible: room_pic1==''">
+                    <img src=/img/nopic.jpg class="small_card_img">
+                </div>                      
+            <div id="row" class="row-fluid">
+                <div class="card_info">
+            <div class="flag">
+                <span class="bed" data-bind="text:num_bed"></span> B
+                <span class="bath" data-bind="text:num_bath"></span> b
+                $<span class="bath" data-bind="text:rent"></span>/m
+               <br>
+                Avail: <span data-bind="text:$.format.date(start_date,'MMM. d. yyyy')"></span>
+<!--                - <span data-bind="text:$.format.date(end_date,'MMM. d, yyyy')"></span>-->
+                <br><span data-bind="text:city"></span>
+                <span data-bind="text:state"></span>
+                <span data-bind="text:zip"></span>
+                
+            </div>
+
+            <div class="line">
+                <div class="wrapper">
+                    <div class="adress">
+                        
+                        
+                    </div>
+
+                </div>
+            </div>
+
+                    </div>
+                </div>  
+        <div class="" id="card_poster">
+
+            <div data-bind="visible:poster_fb_pic">
+                <img data-bind="attr: { src: 'media/'+poster_fb_pic } " class="fb-img">
+                <img src="/img/fb_s_icon.jpg" class="fb_s_icon">
+            </div>
+            <span data-bind="text:user_field"></span>
+            <div data-bind="visible:your_friend"> Posted by your friend!   </div>
+
+        </div>                  
+          </div>
+          
+        </div>
+
+        /
+    </script>
+
+    <!-- script -->
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script src="django_facebook/js/facebook.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/sammy.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/app-jq.js"></script>
+<script>
+    facebookAppId = '490262681101649';
+    facebookDefaultScope = ["email", "user_about_me", "user_birthday", "user_website", "user_friends"];
+    staticUrl = '/static/';
+    function facebookJSLoaded(){
+        FB.init({appId: facebookAppId, status: false, cookie: true, xfbml: true, oauth: true});
+    }
+    window.fbAsyncInit = facebookJSLoaded;
+    F = new facebookClass(facebookAppId);
+    F.load();
+    
+ 
+</script>    
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox();
+		$(".various_login").fancybox({
+		maxWidth	: 500,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none',
+		    afterClose : function() {
+                                     window.history.go(-1);
+		                             return;}
+	});	
+	
+	//parent.$.fancybox.close();
+});
+</script> 
+</body>
+
+</html>

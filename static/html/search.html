@@ -1,0 +1,35 @@
+    <script type="text/html" id="view_search">   
+
+    <div class="fb-facepile" data-app-id="490262681101649"  data-max-rows="1" data-colorscheme="light" data-size="large" data-show-count="true"></div> 
+        <div class="title_graph">
+            <h2 class="siteTitle">
+                Search Result <h2 data-bind="if:$root.search_zip">for "<span data-bind="text:$root.search_zip"></span>"</h2>:   
+            </h2>      
+           <div class="row-fluid">
+        <div class="search_filter span2 ">
+ADJUST:<br>
+Rent Range: $<span data-bind="text:rent_min"></span>-$<span data-bind="text:rent_max"></span><br>Max:<input data-bind="value: rent_max, valueUpdate: 'input', attr:{min:range_min,max:range_max}" type="range"/><br>
+<!--<div style="margin: 10px" data-bind="slider: rent_max, sliderOptions: {min: 0, max: 100, range: 'min', step: 1}"></div>-->
+
+min:<input data-bind="value: rent_min, valueUpdate: 'input', attr:{min:range_min,max:range_max}" type="range"/><br>
+<!--<div style="margin: 10px" data-bind="slider: rent_min, sliderOptions: {min: 0, max: 100, range: 'min', step: 1}"></div>-->
+Bed:<span data-bind="text:sel_bed_num"></span><br>
+            <input data-bind="value: sel_bed_num, valueUpdate: 'input', attr:{min:0,max:bed_range_max}" type="range"/><br>
+Bath:<span data-bind="text:sel_bath_num"></span><br>
+            <input data-bind="value: sel_bath_num, valueUpdate: 'input', attr:{min:0,max:bath_range_max}" type="range"/><br>            
+            <div class="btn btn_black" data-bind="click:reset_filter">
+                Reset
+            </div>              
+        </div>
+        <div class="event_column">
+            <ul class="event_list" data-bind="template:{name:'tmpl_event',foreach:polls_filter}"></ul>
+            <div data-bind="if:loading">Loading...</div>
+<!--            <div data-bind="if:polls_filter.length==0">Found no result</div>-->
+            <div class="btn btn_black" data-bind="click:back">
+                Back
+            </div>  
+        </div>
+        </div>
+         <br>
+ 
+    </script>

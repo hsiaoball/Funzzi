@@ -1,0 +1,17 @@
+    <script type="text/html" id="view_conversation_page">
+        
+        <h2 class="siteTitle">
+            Conversation with <span data-bind="text:asker_id"></span>
+        </h2>
+        <table data-bind="foreach:conversations"  class="table table-hover">
+            <div class="comment">
+               <tr><td data-bind="if:host!='False'">host</td> <td> <td class="comment_item" data-bind="text:comment_text"></td><td class="comment_item" data-bind="text:commenter_id"></td><td class="comment_item" ></td><td class="comment_item" data-bind="text:$.format.date(pub_date,'MMM. d. yyyy. hh .mmm')"></td> </td></tr>
+            </div>
+        
+        </table>
+        <input class="" type="text" data-bind="value:reply_conversation" /> <a href="#" data-bind="click:send_reply_conversation">Reply</a><br>
+            <div class="btn btn_black" data-bind="click:$root.back">
+                Back
+            </div>               
+
+    </script>
